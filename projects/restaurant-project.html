@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourmet Bistro Website | Your Portfolio</title>
+    <style>
+        .project-detail {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .project-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .website-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .screen-shot {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .screen-shot img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .feature-highlights {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            padding: 15px;
+        }
+
+        .project-actions {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .btn-demo {
+            background: #6e48aa;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            margin-right: 15px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back {
+            background: #333;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-demo:hover,
+        .btn-back:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="project-detail">
+        <div class="project-header">
+            <h1>Gourmet Bistro Website</h1>
+            <p class="subtitle">Modern responsive website for an upscale restaurant</p>
+        </div>
+
+        <div class="project-description">
+            <p>Designed and developed a mouthwatering website for a farm-to-table restaurant, featuring online reservations, dynamic menu display, and food photography that drives conversions.</p>
+        </div>
+
+        <div class="website-showcase">
+            <div class="screen-shot">
+                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" alt="Restaurant homepage">
+            </div>
+            <div class="screen-shot">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Menu section">
+            </div>
+            <div class="screen-shot">
+                <img src="https://images.unsplash.com/photo-1589010588553-46e8e7c21788?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Mobile view">
+            </div>
+        </div>
+
+        <div class="feature-highlights">
+            <h3>Key Features</h3>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4><i class="bi bi-calendar-check"></i> Online Reservations</h4>
+                    <p>Integrated booking system that reduced no-shows by 30%</p>
+                </div>
+                <div class="feature-item">
+                    <h4><i class="bi bi-phone"></i> Mobile-Optimized</h4>
+                    <p>Perfect viewing experience on all devices</p>
+                </div>
+                <div class="feature-item">
+                    <h4><i class="bi bi-images"></i> Food Gallery</h4>
+                    <p>Showcase of signature dishes with nutritional info</p>
+                </div>
+                <div class="feature-item">
+                    <h4><i class="bi bi-search"></i> SEO Optimized</h4>
+                    <p>Ranked #1 for "best bistro [city]" within 3 months</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-actions">
+            <a href="https://gourmetbistro.demo" class="btn-demo" target="_blank">View Live Demo</a>
+            <a href="../index.html#portfolio" class="btn-back">Back to Projects</a>
+        </div>
+    </div>
+</body>
+
+</html>

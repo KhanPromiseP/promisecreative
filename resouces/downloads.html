@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Resources | PromiseCreative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f5f7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .resource-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 3rem;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.2);
+        }
+
+        .resource-categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .category-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 25px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-footer {
+            padding: 15px 20px;
+            background: rgba(67, 97, 238, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .download-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .file-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-popular {
+            background: var(--warning);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* Download Modal */
+        .download-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .download-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .download-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(67, 97, 238, 0.2);
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .download-complete {
+            display: none;
+        }
+
+        /* Newsletter */
+        .newsletter-card {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="resource-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Premium Resources Library</h1>
+            <p class="lead mb-4">High-quality assets to accelerate your development and design workflow</p>
+
+            <div class="resource-categories">
+                <button class="category-btn active">All Resources</button>
+                <button class="category-btn">Web Development</button>
+                <button class="category-btn">Graphic Design</button>
+                <button class="category-btn">Programming</button>
+                <button class="category-btn">Personal Growth</button>
+                <button class="category-btn">Font Packs</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-4">
+        <div class="row">
+            <!-- Resource 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Ultimate Web Dev Starter Kit</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 15 Jun 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Complete collection of HTML5/CSS3/JS templates with modern design patterns and best practices documentation.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge bg-light text-dark">HTML</span>
+                            <span class="badge bg-light text-dark">CSS</span>
+                            <span class="badge bg-light text-dark">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 1,240+</span>
+                            <span><i class="fas fa-database"></i> 24.5 MB</span>
+                        </div>
+                        <button class="download-btn" data-file="web-dev-starter-kit.zip">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="card-header">
+                        <div class="card-icon bg-success">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Design System Pro</h3>
+                            <span class="badge-popular">MOST POPULAR</span>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 2 Jul 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Complete Figma UI kit with 150+ components, color systems, and typography scales for professional projects.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge bg-light text-dark">Figma</span>
+                            <span class="badge bg-light text-dark">UI Kit</span>
+                            <span class="badge bg-light text-dark">Components</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 3,572+</span>
+                            <span><i class="fas fa-database"></i> 48.2 MB</span>
+                        </div>
+                        <button class="download-btn" data-file="design-system-pro.fig">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="card-header">
+                        <div class="card-icon bg-warning">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Productivity Masterclass</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 28 May 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Time management strategies from top billionaires and CEOs. Includes worksheets and daily planners.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge bg-light text-dark">PDF</span>
+                            <span class="badge bg-light text-dark">Worksheets</span>
+                            <span class="badge bg-light text-dark">Planners</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 892+</span>
+                            <span><i class="fas fa-database"></i> 15.1 MB</span>
+                        </div>
+                        <button class="download-btn" data-file="productivity-masterclass.pdf">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more resource cards following the same structure -->
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-card text-center">
+            <h2 class="h1 mb-3">Get Exclusive Resources</h2>
+            <p class="mb-4">Subscribe to receive premium content not available in the public library</p>
+            <form class="newsletter-form">
+                <div class="input-group mb-3 mx-auto" style="max-width: 500px;">
+                    <input type="email" class="form-control form-control-lg" placeholder="Your best email" required>
+                    <button class="btn btn-light btn-lg" type="submit">
+                        <i class="fas fa-paper-plane me-2"></i> Subscribe
+                    </button>
+                </div>
+                <small class="text-white-50">We respect your privacy. Unsubscribe at any time.</small>
+            </form>
+        </div>
+    </main>
+
+    <!-- Download Modal -->
+    <div class="download-modal">
+        <div class="modal-content">
+            <div class="download-start">
+                <div class="mb-4">
+                    <i class="fas fa-cloud-download-alt fa-4x text-primary mb-3"></i>
+                    <h3 class="mb-2">Preparing Download</h3>
+                    <p class="text-muted" id="filename">web-dev-starter-kit.zip</p>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress"></div>
+                </div>
+                <p class="text-muted mb-0">Your download will begin shortly...</p>
+            </div>
+            <div class="download-complete">
+                <div class="mb-4">
+                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <h3 class="mb-2">Download Complete!</h3>
+                    <p class="text-muted">File saved to your Downloads folder</p>
+                </div>
+                <button class="btn btn-primary" id="close-modal">
+                    <i class="fas fa-thumbs-up me-2"></i> Got It!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Download Simulation
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filename = this.getAttribute('data-file');
+                document.getElementById('filename').textContent = filename;
+
+                // Show modal
+                const modal = document.querySelector('.download-modal');
+                modal.classList.add('active');
+
+                // Simulate download progress
+                const progress = document.querySelector('.progress');
+                setTimeout(() => progress.style.width = '30%', 300);
+                setTimeout(() => progress.style.width = '65%', 800);
+                setTimeout(() => progress.style.width = '100%', 1200);
+
+                // Show completion after progress
+                setTimeout(() => {
+                    document.querySelector('.download-start').style.display = 'none';
+                    document.querySelector('.download-complete').style.display = 'block';
+
+                    // Increment download count visually
+                    const countElement = this.parentElement.querySelector('.file-meta span:first-child');
+                    const currentCount = parseInt(countElement.textContent.replace(/\D/g, ''));
+                    countElement.innerHTML = `<i class="fas fa-download"></i> ${(currentCount + 1).toLocaleString()}+`;
+
+                    // Here you would actually trigger the download
+                    // window.location.href = 'your-drive-link/' + filename;
+                }, 1500);
+            });
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            const modal = document.querySelector('.download-modal');
+            modal.classList.remove('active');
+
+            // Reset modal for next download
+            setTimeout(() => {
+                document.querySelector('.download-start').style.display = 'block';
+                document.querySelector('.download-complete').style.display = 'none';
+                document.querySelector('.progress').style.width = '0%';
+            }, 300);
+        });
+
+        // Category filtering
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // You would add filtering logic here
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for subscribing! Check your email for confirmation.');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

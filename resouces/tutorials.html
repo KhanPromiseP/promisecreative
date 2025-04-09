@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Vault | PromiseCreative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f5f7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .vault-header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .vault-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /><text x="50" y="50" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.1)" text-anchor="middle" dominant-baseline="middle">TUTORIALS</text></svg>');
+            background-size: 300px;
+            opacity: 0.3;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding-left: 50px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .vault-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .tutorial-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .tutorial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tutorial-thumbnail {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .difficulty {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .tutorial-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .tutorial-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tutorial-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .tutorial-description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .tutorial-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            padding: 15px 20px;
+            background: rgba(67, 97, 238, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .action-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+        }
+
+        .action-btn.secondary {
+            background: white;
+            color: var(--primary);
+            border: 1px solid rgba(67, 97, 238, 0.3);
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(67, 97, 238, 0.05);
+        }
+
+        /* Download Modal */
+        .download-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .download-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .download-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .progress-container {
+            margin: 25px 0;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(67, 97, 238, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .download-complete {
+            display: none;
+        }
+
+        .complete-animation {
+            font-size: 4rem;
+            color: var(--success);
+            margin: 20px 0;
+            animation: bounce 0.5s ease;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Newsletter */
+        .newsletter-card {
+            background: linear-gradient(135deg, #4cc9f0, #4361ee);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 4rem 0;
+            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .vault-header {
+                padding: 3rem 0;
+            }
+
+            .filter-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+
+            .tutorial-thumbnail {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="vault-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Tutorial Vault</h1>
+            <p class="lead mb-4">Premium learning resources for developers and designers</p>
+
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search tutorials...">
+            </div>
+
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fas fa-star"></i> All
+                </button>
+                <button class="filter-btn" data-category="web">
+                    <i class="fas fa-code"></i> Web Dev
+                </button>
+                <button class="filter-btn" data-category="design">
+                    <i class="fas fa-paint-brush"></i> Design
+                </button>
+                <button class="filter-btn" data-category="mobile">
+                    <i class="fas fa-mobile-alt"></i> Mobile
+                </button>
+                <button class="filter-btn" data-category="backend">
+                    <i class="fas fa-server"></i> Backend
+                </button>
+                <button class="filter-btn" data-category="career">
+                    <i class="fas fa-briefcase"></i> Career
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="vault-container py-4">
+        <div class="row">
+            <!-- Tutorial 1 -->
+            <div class="col-md-6 col-lg-4" data-categories="web">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                        <span class="difficulty">Intermediate</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 45 min</span>
+                            <span><i class="far fa-calendar-alt"></i> Jul 15, 2023</span>
+                            <span><i class="fas fa-download"></i> 1,240+</span>
+                        </div>
+                        <h3 class="tutorial-title">Modern JavaScript Patterns</h3>
+                        <p class="tutorial-description">Learn essential JavaScript patterns including modules, observables, and modern async patterns.</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">ES6+</span>
+                            <span class="tag">Patterns</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="action-btn secondary">
+                            <i class="far fa-eye"></i> Preview
+                        </a>
+                        <button class="action-btn download-trigger" data-tutorial="modern-js-patterns.pdf" data-title="Modern JavaScript Patterns">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial 2 -->
+            <div class="col-md-6 col-lg-4" data-categories="design">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80');">
+                        <span class="difficulty">Beginner</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 32 min</span>
+                            <span><i class="far fa-calendar-alt"></i> Aug 2, 2023</span>
+                            <span><i class="fas fa-download"></i> 2,850+</span>
+                        </div>
+                        <h3 class="tutorial-title">Figma Masterclass</h3>
+                        <p class="tutorial-description">From basics to advanced prototyping with auto-layout, components, and design systems.</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Design</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="action-btn secondary">
+                            <i class="far fa-eye"></i> Preview
+                        </a>
+                        <button class="action-btn download-trigger" data-tutorial="figma-masterclass.zip" data-title="Figma Masterclass">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial 3 -->
+            <div class="col-md-6 col-lg-4" data-categories="web">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80');">
+                        <span class="difficulty">Advanced</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 1h 15min</span>
+                            <span><i class="far fa-calendar-alt"></i> Jul 28, 2023</span>
+                            <span><i class="fas fa-download"></i> 892+</span>
+                        </div>
+                        <h3 class="tutorial-title">Web Performance Optimization</h3>
+                        <p class="tutorial-description">Advanced techniques to make your websites load instantly and run smoothly.</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Performance</span>
+                            <span class="tag">Optimization</span>
+                            <span class="tag">Lighthouse</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="action-btn secondary">
+                            <i class="far fa-eye"></i> Preview
+                        </a>
+                        <button class="action-btn download-trigger" data-tutorial="web-performance.pdf" data-title="Web Performance Optimization">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial 4 -->
+            <div class="col-md-6 col-lg-4" data-categories="mobile">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                        <span class="difficulty">Intermediate</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 58 min</span>
+                            <span><i class="far fa-calendar-alt"></i> Aug 10, 2023</span>
+                            <span><i class="fas fa-download"></i> 1,450+</span>
+                        </div>
+                        <h3 class="tutorial-title">React Native Crash Course</h3>
+                        <p class="tutorial-description">Build your first cross-platform mobile app with React Native and Expo.</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">React Native</span>
+                            <span class="tag">Mobile</span>
+                            <span class="tag">JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="action-btn secondary">
+                            <i class="far fa-eye"></i> Preview
+                        </a>
+                        <button class="action-btn download-trigger" data-tutorial="react-native-course.zip" data-title="React Native Crash Course">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial 5 -->
+            <div class="col-md-6 col-lg-4" data-categories="career">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80');">
+                        <span class="difficulty">All Levels</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 1h 5min</span>
+                            <span><i class="far fa-calendar-alt"></i> Aug 5, 2023</span>
+                            <span><i class="fas fa-download"></i> 3,210+</span>
+                        </div>
+                        <h3 class="tutorial-title">Tech Interview Prep</h3>
+                        <p class="tutorial-description">Complete guide to acing technical interviews at FAANG companies.</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Career</span>
+                            <span class="tag">Interview</span>
+                            <span class="tag">Algorithms</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="action-btn secondary">
+                            <i class="far fa-eye"></i> Preview
+                        </a>
+                        <button class="action-btn download-trigger" data-tutorial="tech-interview-prep.pdf" data-title="Tech Interview Prep">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tutorial 6 -->
+            <div class="col-md-6 col-lg-4" data-categories="backend">
+                <div class="tutorial-card">
+                    <div class="tutorial-thumbnail" style="background-image: url('https://images.unsplash.com/photo-1555066931-bf19f8fd1085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');">
+                        <span class="difficulty">Advanced</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="tutorial-meta">
+                            <span><i class="far fa-clock"></i> 1h 22min</span>
+                            <span><i class="far fa-calendar-alt"></i> Jul 20, 2023</span>
+                            <span><i class="fas fa-download"></i> 1,780+</span>
+                        </div>
+                        <h3 class="tutorial-title">Node.js Performance</h3>
+                        <p class="tutorial-description">Optimize your Node.js applications with clustering, caching, and advanced techniques.</p>
+                        <div class="tutorial-tags">
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Backend</span>
+                            <span class="tag">Performance</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="action-btn secondary">
+                            <i class="far fa-eye"></i> Preview
+                        </a>
+                        <button class="action-btn download-trigger" data-tutorial="node-performance.pdf" data-title="Node.js Performance">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-card">
+            <h2 class="h1 mb-3">Get Exclusive Tutorials</h2>
+            <p class="mb-4">Subscribe to receive premium content not available in the public vault</p>
+            <form class="newsletter-form">
+                <div class="input-group mb-3 mx-auto" style="max-width: 500px;">
+                    <input type="email" class="form-control form-control-lg" placeholder="Your best email" required>
+                    <button class="btn btn-light btn-lg" type="submit">
+                        <i class="fas fa-paper-plane me-2"></i> Subscribe
+                    </button>
+                </div>
+                <small class="text-white-50">We respect your privacy. Unsubscribe at any time.</small>
+            </form>
+        </div>
+    </main>
+
+    <!-- Download Modal -->
+    <div class="download-modal">
+        <div class="modal-content">
+            <div class="download-start">
+                <div class="mb-4">
+                    <i class="fas fa-cloud-download-alt fa-4x text-primary mb-3"></i>
+                    <h3 class="mb-2">Preparing Download</h3>
+                    <p class="text-muted" id="download-title">Modern JavaScript Patterns.pdf</p>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-text">
+                        <span>Downloading...</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
+                </div>
+                <p class="text-muted mb-0">Your download will begin automatically...</p>
+            </div>
+            <div class="download-complete">
+                <div class="complete-animation">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="mb-2">Download Complete!</h3>
+                <p class="text-muted mb-4">Check your downloads folder for the file</p>
+                <button class="btn btn-primary" id="close-modal">
+                    <i class="fas fa-thumbs-up me-2"></i> Awesome!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Download Simulation
+        document.querySelectorAll('.download-trigger').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filename = this.getAttribute('data-tutorial');
+                const title = this.getAttribute('data-title');
+
+                // Update modal content
+                document.getElementById('download-title').textContent = title + '.' + filename.split('.').pop();
+
+                // Show modal
+                const modal = document.querySelector('.download-modal');
+                modal.classList.add('active');
+
+                // Simulate download progress
+                const progressBar = document.getElementById('progress-bar');
+                const progressPercent = document.getElementById('progress-percent');
+
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 10;
+                    if (progress > 100) progress = 100;
+
+                    progressBar.style.width = progress + '%';
+                    progressPercent.textContent = Math.floor(progress) + '%';
+
+                    if (progress === 100) {
+                        clearInterval(interval);
+
+                        // Show completion after progress
+                        setTimeout(() => {
+                            document.querySelector('.download-start').style.display = 'none';
+                            document.querySelector('.download-complete').style.display = 'block';
+
+                            // Increment download count visually
+                            const countElement = this.parentElement.parentElement.querySelector('.tutorial-meta span:nth-child(3)');
+                            const currentCount = parseInt(countElement.textContent.replace(/\D/g, ''));
+                            countElement.innerHTML = `<i class="fas fa-download"></i> ${(currentCount + 1).toLocaleString()}+`;
+
+                            // Here you would trigger the actual download
+                            // For demo purposes, we'll just simulate it
+                            setTimeout(() => {
+                                // Uncomment this line for actual download:
+                                // window.location.href = 'https://your-drive-link.com/' + filename;
+
+                                // For demo, we'll just show a message
+                                console.log('Download would initiate for:', filename);
+                            }, 500);
+                        }, 300);
+                    }
+                }, 200);
+            });
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            const modal = document.querySelector('.download-modal');
+            modal.classList.remove('active');
+
+            // Reset modal for next download
+            setTimeout(() => {
+                document.querySelector('.download-start').style.display = 'block';
+                document.querySelector('.download-complete').style.display = 'none';
+                document.getElementById('progress-bar').style.width = '0%';
+                document.getElementById('progress-percent').textContent = '0%';
+            }, 300);
+        });
+
+        // Category filtering
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const category = this.dataset.category;
+                const tutorials = document.querySelectorAll('[data-categories]');
+
+                tutorials.forEach(tutorial => {
+                    if (category === 'all' || tutorial.dataset.categories.includes(category)) {
+                        tutorial.style.display = 'block';
+                    } else {
+                        tutorial.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const tutorials = document.querySelectorAll('[data-categories]');
+
+            tutorials.forEach(tutorial => {
+                const title = tutorial.querySelector('.tutorial-title').textContent.toLowerCase();
+                const description = tutorial.querySelector('.tutorial-description').textContent.toLowerCase();
+                const tags = Array.from(tutorial.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase());
+
+                if (title.includes(searchTerm) ||
+                    description.includes(searchTerm) ||
+                    tags.some(tag => tag.includes(searchTerm))) {
+                    tutorial.style.display = 'block';
+                } else {
+                    tutorial.style.display = 'none';
+                }
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for subscribing to our exclusive tutorials!');
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>

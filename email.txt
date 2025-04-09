@@ -1,0 +1,38 @@
+function doPost(e) {
+  const { name, email, message } = e.parameters;
+  
+  // Branded Email Template (Customize with client’s logo/colors)
+  const htmlBody = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <img src="CLIENT_LOGO_URL" alt="Promise Creative" style="width: 200px; margin-bottom: 20px;">
+      <h2 style="color: #007BFF;">New Message from <b>Promise Creative</b></h2>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Message:</strong><br>${message}</p>
+      <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-top: 20px;">
+        <p style="color: #666;">This email was sent via promisecreative.com.</p>
+      </div>
+    </div>
+  `;
+
+  // Send email to the client
+  GmailApp.sendEmail(
+    "promisecreative@yahoo.com", // Client’s email
+    "New Contact Form Submission", 
+    "", // Plain text body (empty)
+    {
+      htmlBody: htmlBody,
+      name: "Client Brand Name", // Shows as "Client Brand Name" instead of your Gmail
+      replyTo: email // Replies go to the user
+    }
+  );
+
+  // Redirect to a branded thank-you page
+  return HtmlService.createHtmlOutput(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta http-equiv="refresh" content="0; url=CLIENT_THANK_YOU_PAGE_URL" />
+      </head>
+    </html>
+  `);
+}

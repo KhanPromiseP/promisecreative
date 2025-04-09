@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Cheat Sheets | PromiseCreative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f72585;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f5f7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .cheatsheet-header {
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cheatsheet-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /><text x="50" y="50" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.1)" text-anchor="middle" dominant-baseline="middle">{ } &lt;/&gt; # . ;</text></svg>');
+            background-size: 300px;
+            opacity: 0.3;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .category-tab {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-tab:hover,
+        .category-tab.active {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .cheatsheet-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cheatsheet-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .cheatsheet-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(67, 97, 238, 0.1), white);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .cheatsheet-content {
+            background: #f9fafc;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .code-block {
+            margin-bottom: 15px;
+        }
+
+        .code-comment {
+            color: #6a737d;
+            font-style: italic;
+        }
+
+        .code-keyword {
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .code-string {
+            color: #22863a;
+        }
+
+        .code-function {
+            color: #6f42c1;
+        }
+
+        .code-tag {
+            color: #005cc5;
+        }
+
+        .code-attr {
+            color: #e36209;
+        }
+
+        .card-footer {
+            padding: 15px 20px;
+            background: rgba(67, 97, 238, 0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .download-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.2);
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .file-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-new {
+            background: var(--warning);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+                font-size: 12pt;
+            }
+
+            .cheatsheet-header,
+            .category-tabs,
+            .card-footer {
+                display: none;
+            }
+
+            .cheatsheet-card {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Dark Mode */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #121212;
+                color: #e0e0e0;
+            }
+
+            .cheatsheet-card,
+            .cheatsheet-content {
+                background: #1e1e1e;
+                color: #e0e0e0;
+            }
+
+            .cheatsheet-content {
+                background: #252525;
+            }
+
+            .code-comment {
+                color: #6a9955;
+            }
+
+            .code-keyword {
+                color: #569cd6;
+            }
+
+            .code-string {
+                color: #ce9178;
+            }
+
+            .code-function {
+                color: #dcdcaa;
+            }
+
+            .code-tag {
+                color: #569cd6;
+            }
+
+            .code-attr {
+                color: #9cdcfe;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="cheatsheet-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Developer Cheat Sheets</h1>
+            <p class="lead mb-4">Essential reference guides for modern web development</p>
+
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">
+                    <i class="fas fa-star"></i> All Sheets
+                </button>
+                <button class="category-tab" data-category="html">
+                    <i class="fab fa-html5"></i> HTML
+                </button>
+                <button class="category-tab" data-category="css">
+                    <i class="fab fa-css3-alt"></i> CSS
+                </button>
+                <button class="category-tab" data-category="js">
+                    <i class="fab fa-js-square"></i> JavaScript
+                </button>
+                <button class="category-tab" data-category="git">
+                    <i class="fab fa-git-alt"></i> Git
+                </button>
+                <button class="category-tab" data-category="cli">
+                    <i class="fas fa-terminal"></i> CLI
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="cheatsheet-container py-4">
+        <div class="row">
+            <!-- HTML5 Cheat Sheet -->
+            <div class="col-md-6 col-lg-4" data-categories="html">
+                <div class="cheatsheet-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(45deg, #e34c26, #f06529);">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">HTML5 Reference</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 10 Jul 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>All HTML5 tags with examples, semantic elements, and accessibility attributes.</p>
+
+                        <div class="cheatsheet-content">
+                            <div class="code-block">
+                                <span class="code-comment">&lt;!-- Semantic Structure --&gt;</span><br>
+                                <span class="code-tag">&lt;header&gt;</span><br>
+                                <span class="code-tag">&lt;nav&gt;</span><br>
+                                <span class="code-tag">&lt;main&gt;</span><br>
+                                <span class="code-tag">&lt;article&gt;</span><br>
+                                <span class="code-tag">&lt;footer&gt;</span>
+                            </div>
+
+                            <div class="code-block">
+                                <span class="code-comment">&lt;!-- Multimedia --&gt;</span><br>
+                                <span class="code-tag">&lt;video</span> <span class="code-attr">controls</span><span class="code-tag">&gt;</span><br>
+                                &nbsp;&nbsp;<span class="code-tag">&lt;source</span> <span class="code-attr">src</span>=<span class="code-string">"movie.mp4"</span> <span class="code-attr">type</span>=<span class="code-string">"video/mp4"</span><span class="code-tag">&gt;</span><br>
+                                <span class="code-tag">&lt;/video&gt;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 2,450+</span>
+                            <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                        <button class="download-btn" data-file="html5-cheatsheet.pdf">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSS Grid Cheat Sheet -->
+            <div class="col-md-6 col-lg-4" data-categories="css">
+                <div class="cheatsheet-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(45deg, #2965f1, #549bfc);">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">CSS Grid Complete Guide</h3>
+                            <span class="badge-new">NEW</span>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 5 Aug 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Master CSS Grid with properties, examples, and visual diagrams for layout patterns.</p>
+
+                        <div class="cheatsheet-content">
+                            <div class="code-block">
+                                <span class="code-comment">/* Container Properties */</span><br>
+                                <span class="code-keyword">display</span>: <span class="code-string">grid</span>;<br>
+                                <span class="code-keyword">grid-template-columns</span>: <span class="code-string">repeat(3, 1fr)</span>;<br>
+                                <span class="code-keyword">grid-gap</span>: <span class="code-string">20px</span>;<br>
+                                <span class="code-keyword">align-items</span>: <span class="code-string">center</span>;
+                            </div>
+
+                            <div class="code-block">
+                                <span class="code-comment">/* Item Placement */</span><br>
+                                <span class="code-keyword">grid-column</span>: <span class="code-string">1 / 3</span>;<br>
+                                <span class="code-keyword">grid-row</span>: <span class="code-string">2</span>;<br>
+                                <span class="code-keyword">grid-area</span>: <span class="code-string">header</span>;
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 1,780+</span>
+                            <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                        <button class="download-btn" data-file="css-grid-cheatsheet.pdf">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript Cheat Sheet -->
+            <div class="col-md-6 col-lg-4" data-categories="js">
+                <div class="cheatsheet-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(45deg, #f0db4f, #f7df1e); color: #323330;">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Modern JavaScript</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 22 Jul 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>ES6+ features, array methods, promises, async/await, and common patterns.</p>
+
+                        <div class="cheatsheet-content">
+                            <div class="code-block">
+                                <span class="code-comment">// Array Methods</span><br>
+                                <span class="code-keyword">const</span> nums = [1, 2, 3];<br>
+                                nums.<span class="code-function">map</span>(n => n * 2);<br>
+                                nums.<span class="code-function">filter</span>(n => n > 1);<br>
+                                nums.<span class="code-function">reduce</span>((acc, n) => acc + n, 0);
+                            </div>
+
+                            <div class="code-block">
+                                <span class="code-comment">// Async/Await</span><br>
+                                <span class="code-keyword">async function</span> <span class="code-function">getData</span>() {<br>
+                                &nbsp;&nbsp;<span class="code-keyword">try</span> {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">const</span> res = <span class="code-keyword">await</span> <span class="code-function">fetch</span>(<span class="code-string">'api/data'</span>);<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> res.<span class="code-function">json</span>();<br>
+                                &nbsp;&nbsp;} <span class="code-keyword">catch</span> (err) {<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-function">console</span>.<span class="code-function">error</span>(err);<br>
+                                &nbsp;&nbsp;}<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 3,120+</span>
+                            <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                        <button class="download-btn" data-file="js-cheatsheet.pdf">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Git Cheat Sheet -->
+            <div class="col-md-6 col-lg-4" data-categories="git">
+                <div class="cheatsheet-card">
+                    <div class="card-header">
+                        <div class="card-icon" style="background: linear-gradient(45deg, #f34f29, #f05033);">
+                            <i class="fab fa-git-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Git Command Reference</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 15 Jun 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Essential Git commands with examples for branching, merging, and collaboration.</p>
+
+                        <div class="cheatsheet-content">
+                            <div class="code-block">
+                                <span class="code-comment"># Initialize & Clone</span><br>
+                                git init<br>
+                                git clone <span class="code-string">https://github.com/user/repo.git</span>
+                            </div>
+
+                            <div class="code-block">
+                                <span class="code-comment"># Branching</span><br>
+                                git branch <span class="code-string">feature-x</span><br>
+                                git checkout <span class="code-string">-b feature-y</span><br>
+                                git merge <span class="code-string">feature-x</span>
+                            </div>
+
+                            <div class="code-block">
+                                <span class="code-comment"># Undoing</span><br>
+                                git reset <span class="code-string">--hard HEAD~1</span><br>
+                                git revert <span class="code-string">abc1234</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 4,250+</span>
+                            <span><i class="fas fa-file-pdf"></i> PDF</span>
+                        </div>
+                        <button class="download-btn" data-file="git-cheatsheet.pdf">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more cheat sheets following the same structure -->
+        </div>
+
+        <!-- Newsletter -->
+        <div class="text-center py-5">
+            <h2 class="h3 mb-3">Want More Developer Resources?</h2>
+            <p class="mb-4">Join our newsletter for exclusive cheat sheets and coding tips</p>
+            <form class="newsletter-form d-flex justify-content-center">
+                <div class="input-group" style="max-width: 400px;">
+                    <input type="email" class="form-control" placeholder="Your email address" required>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-paper-plane me-2"></i> Subscribe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Category filtering
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                const category = this.dataset.category;
+                const sheets = document.querySelectorAll('[data-categories]');
+
+                sheets.forEach(sheet => {
+                    if (category === 'all' || sheet.dataset.categories.includes(category)) {
+                        sheet.style.display = 'block';
+                    } else {
+                        sheet.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Download buttons
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filename = this.dataset.file;
+
+                // Here you would implement actual download logic
+                // For now, we'll just show an alert
+                alert(`Downloading: ${filename}\n\n(Note: This is a demo. In production, this would trigger the actual download from your Google Drive)`);
+
+                // Increment download count visually
+                const countElement = this.parentElement.querySelector('.file-meta span:first-child');
+                const currentCount = parseInt(countElement.textContent.replace(/\D/g, ''));
+                countElement.innerHTML = `<i class="fas fa-download"></i> ${(currentCount + 1).toLocaleString()}+`;
+            });
+        });
+
+        // Newsletter form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for subscribing to our developer newsletter!');
+            this.reset();
+        });
+
+        // Print-friendly behavior
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'p') {
+                alert('Tip: For best printing results, use Chrome or Edge and select "Background graphics" in print settings.');
+            }
+        });
+    </script>
+</body>
+
+</html>

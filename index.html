@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Creative | Web & Graphic Design</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <!-- Advanced Preloader -->
+    <div class="preloader">
+        <div class="preloader-container">
+            <div class="promise-logo animate__animated animate__pulse animate__infinite">
+                <span class="logo-text">PromiseCreative</span>
+                <span class="logo-dot">.</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="loading-text">Crafting Digital Excellence</div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="btn btn-sm">
+            <i class="bi bi-moon-fill"></i>
+        </button>
+    </div>
+
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="logo-text">PromiseCreative</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="navbar-close-btn">×</button>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Particle Background -->
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="row align-items-center">
+                    <!-- Left Column (Text Content) -->
+                    <div class="col-lg-6">
+                        <h1 class="hero-title animate__animated animate__fadeInDown">
+                            Transforming <span class="highlight">Ideas</span> Into<br>
+                            <span class="typewrite" data-period="2000" data-type='["Digital Experiences", "Beautiful Websites", "Stunning Brands"]'></span>
+                        </h1>
+                        <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">
+                            I craft premium websites and visual identities that elevate your online presence and captivate your audience.
+                        </p>
+                        <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-1s">
+                            <a href="#contact" class="btn btn-primary btn-glow">Start Your Project</a>
+                            <a href="#portfolio" class="btn btn-outline-secondary">View My Work</a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column (Device + Profile Picture) -->
+                    <div class="col-lg-6">
+                        <div class="hero-image animate__animated animate__fadeInRight animate__delay-1s">
+                            <!-- Floating Device -->
+                            <div class="floating-device">
+                                <div class="device-screen">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Web Design">
+                                </div>
+                            </div>
+
+                            <!-- Rounded Profile Picture with Name/Title -->
+                            <div class="profile-container">
+                                <img src="assets/images/me.jpg" alt="Khan Promise - Computer Engineer" class="profile-picture">
+                                <div class="profile-title">
+                                    <h3>Khan Promise</h3>
+                                    <p>Computer Engineer</p>
+                                </div>
+                            </div>
+
+                            <!-- Floating Shapes -->
+                            <div class="floating-shapes">
+                                <div class="shape shape-1"></div>
+                                <div class="shape shape-2"></div>
+                                <div class="shape shape-3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator animate__animated animate__bounce animate__infinite animate__delay-2s">
+            <i class="bi bi-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <!-- 1. SATISFACTION (3D Smile Icon + Confetti) -->
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-graphic">
+                        <div class="icon-3d" data-icon="smile">
+                            <div class="icon-inner"></div>
+                            <div class="confetti"></div>
+                        </div>
+                    </div>
+                    <div class="stat-number" data-count="100">0</div>
+                    <div class="stat-label">% Satisfaction</div>
+                    <p class="stat-description">Guaranteed delight</p>
+                </div>
+
+                <!-- 2. TRAFFIC (Rocket Growth Chart) -->
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-graphic">
+                        <div class="icon-3d" data-icon="rocket">
+                            <div class="icon-inner"></div>
+                            <div class="growth-chart">
+                                <div class="bar" style="--height: 30%"></div>
+                                <div class="bar" style="--height: 70%"></div>
+                                <div class="bar" style="--height: 100%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-number" data-count="300">0</div>
+                    <div class="stat-label">% Traffic Surge</div>
+                    <p class="stat-description">Skyrocket visibility</p>
+                </div>
+
+                <!-- 3. ENGAGEMENT (Pulsing Social Web) -->
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-graphic">
+                        <div class="icon-3d" data-icon="web">
+                            <div class="icon-inner"></div>
+                            <div class="pulse-rings">
+                                <div class="ring"></div>
+                                <div class="ring"></div>
+                                <div class="ring"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">% Engagement</div>
+                    <p class="stat-description">Viral connections</p>
+                </div>
+
+                <!-- 4. PERFORMANCE (Speed Gauge) -->
+                <div class="col-md-3 col-6 stat-item">
+                    <div class="stat-graphic">
+                        <div class="icon-3d" data-icon="gauge">
+                            <div class="icon-inner"></div>
+                            <div class="speed-dots">
+                                <div class="dot" style="--delay: 0s"></div>
+                                <div class="dot" style="--delay: 0.2s"></div>
+                                <div class="dot" style="--delay: 0.4s"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stat-number" data-count="80">0</div>
+                    <div class="stat-label">% Faster</div>
+                    <p class="stat-description">Blazing speed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- services Section-->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Premium Solutions</span>
+                <h2 class="section-title">Elevate Your Digital Presence</h2>
+                <p class="section-description">Tailored services designed to transform your vision into exceptional results</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Custom Website Design -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-code-slash"></i>
+                            <div class="icon-shine"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Custom Website Design</h3>
+                            <p>Bespoke digital experiences crafted to perfectly represent your brand and engage your audience.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle-fill"></i> 100% Custom Design</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Mobile-Optimized</li>
+                                <li><i class="bi bi-check-circle-fill"></i> SEO-Ready Architecture</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Performance Optimized</li>
+                            </ul>
+                            <div class="cta-wrapper">
+                                <a href="#contact" class="btn btn-cta">
+                                    <span>Request Proposal</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="hint">Starting at industry-competitive rates</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Design -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-palette"></i>
+                            <div class="icon-shine"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Graphic Design</h3>
+                            <p>Stunning visual assets that make your brand stand out and leave a lasting impression.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Logo & Brand Assets</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Marketing Materials</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Social Media Graphics</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Flyer Designs</li>
+                            </ul>
+                            <div class="cta-wrapper">
+                                <a href="#contact" class="btn btn-cta">
+                                    <span>View Portfolio</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="hint">Custom packages available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Website Optimization & Fixes -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i> <!-- Changed icon to tools -->
+                            <div class="icon-shine"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Website Optimization</h3> <!-- Changed title -->
+                            <p>Transform your existing site into a high-performing, user-friendly digital asset that converts visitors.</p> <!-- Updated description -->
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Speed & Performance Boost</li> <!-- Updated features -->
+                                <li><i class="bi bi-check-circle-fill"></i> Mobile Responsiveness Fixes</li>
+                                <li><i class="bi bi-check-circle-fill"></i> UI/UX Enhancements</li>
+                                <li><i class="bi bi-check-circle-fill"></i> SEO & Accessibility Improvements</li>
+                            </ul>
+                            <div class="cta-wrapper">
+                                <a href="#contact" class="btn btn-cta">
+                                    <span>Audit My Website</span> <!-- Updated CTA text -->
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="hint">Get measurable improvements</span> <!-- Updated hint -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Responsive Development -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-phone"></i>
+                            <div class="icon-shine"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Responsive Development</h3>
+                            <p>Websites that look and work perfectly on any device, from desktop to mobile.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Mobile-First Approach</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Framework Integration</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Performance Optimized</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Cross-Browser Tested</li>
+                            </ul>
+                            <div class="cta-wrapper">
+                                <a href="#contact" class="btn btn-cta">
+                                    <span>Technical Consultation</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="hint">Project-based or retainer options</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Creation -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-lightning-charge-fill"></i>
+                            <div class="icon-shine"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Fash Website Designs</h3>
+                            <p>Compelling fast, clean and flexible websites with morden technologies. One time FEE and own it for life.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle-fill"></i> High Compatibility</li>
+                                <li><i class="bi bi-check-circle-fill"></i> HTML, JS, CSS/ No Backend</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Over 2500 emails/month</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Best UI & Supper fast</li>
+                            </ul>
+                            <div class="cta-wrapper">
+                                <a href="#contact" class="btn btn-cta">
+                                    <span>Get one running</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="hint">Pay once and own a website of your own</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Website Maintenance -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i>
+                            <div class="icon-shine"></div>
+                        </div>
+                        <div class="service-content">
+                            <h3>Website Maintenance</h3>
+                            <p>Ongoing support to keep your website secure, updated, and running smoothly.</p>
+                            <ul class="service-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Regular Updates</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Security Monitoring</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Backup Solutions</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Performance Optimization</li>
+                            </ul>
+                            <div class="cta-wrapper">
+                                <a href="#contact" class="btn btn-cta">
+                                    <span>Let's talk...</span>
+                                    <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <span class="hint">Flexible maintenance packages</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#contact" class="btn btn-primary" style="border-radius: 30px;">
+                    <span>Get Custom Pricing for Your Project</span>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Responsive Showcase Section -->
+    <section class="showcase-section" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">Adaptive Design</span>
+                <h2 class="section-title">Flawless <span class="highlight">Responsiveness</span></h2>
+                <p class="section-description">Every site I create is optimized for all screen sizes and devices.</p>
+            </div>
+
+            <div class="devices-showcase">
+                <div class="device device-laptop">
+                    <div class="device-frame">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Laptop View">
+                    </div>
+                </div>
+                <div class="device device-tablet">
+                    <div class="device-frame">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Tablet View">
+                    </div>
+                </div>
+                <div class="device device-mobile">
+                    <div class="device-frame">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Mobile View">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-subtitle">My Few Works</span>
+                <h2 class="section-title">Creative <span class="highlight">Portfolio</span></h2>
+                <p class="section-description">A selection of my recent projects in web and graphic design.</p>
+            </div>
+
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+                <!-- <button class="filter-btn" data-filter="Optimization">Optimization</button> -->
+            </div>
+
+            <div class="row portfolio-grid">
+                <div class="col-lg-4 col-md-6 portfolio-item" data-category="web">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" alt="Web Design Project">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Creative Portfolio Website</h3>
+                            <p>Modern design with smooth animations</p>
+                            <a href="projects/portfoliopro.html" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item" data-category="graphic">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1558&q=80" alt="Graphic Design Project">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Coffee Brand Packaging</h3>
+                            <p>Eco-friendly packaging design</p>
+                            <a href="projects/coffee-brand.html" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4 col-md-6 portfolio-item" data-category="web">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Web Design Project">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Small businesses Platform</h3>
+                            <p>High-converting online businesses sites</p>
+                            <a href="projects/smallbusiness-project.html" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item" data-category="graphic">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1601933470096-0e34634ffcde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Graphic Design Project">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Stonny Logos & Posters</h3>
+                            <p>Logos For Businesses and personal brand</p>
+                            <a href="projects/logo-project.html" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 portfolio-item" data-category="graphic">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1601933470096-0e34634ffcde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Graphic Design Project">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Stonny Flyers</h3>
+                            <p>Bring life to businesses, for all services</p>
+                            <a href="projects/flyer-project.html" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 portfolio-item" data-category="web">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Web Design Project">
+                        </div>
+                        <div class="portfolio-overlay">
+                            <h3>Restaurant Platform</h3>
+                            <p>A restaurant website for daily menus</p>
+                            <a href="projects/restaurant-project.html" class="portfolio-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary btn-glow">View All Projects</a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">My Approach</span>
+                <h2 class="section-title">Design <span class="highlight">Process</span></h2>
+                <p class="section-description">A structured workflow to ensure exceptional results every time.</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-line"></div>
+
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <div class="process-step animate__animated">
+                            <div class="step-number">1</div>
+                            <div class="step-icon">
+                                <i class="bi bi-chat-square-text"></i>
+                            </div>
+                            <h4>Discovery</h4>
+                            <p>Understanding your goals, audience, and requirements.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-6">
+                        <div class="process-step animate__animated">
+                            <div class="step-number">2</div>
+                            <div class="step-icon">
+                                <i class="bi bi-pencil"></i>
+                            </div>
+                            <h4>Design</h4>
+                            <p>Creating wireframes and design mockups.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-6">
+                        <div class="process-step animate__animated">
+                            <div class="step-number">3</div>
+                            <div class="step-icon">
+                                <i class="bi bi-code-square"></i>
+                            </div>
+                            <h4>Development</h4>
+                            <p>Building your website with clean, efficient code.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-6">
+                        <div class="process-step animate__animated">
+                            <div class="step-number">4</div>
+                            <div class="step-icon">
+                                <i class="bi bi-rocket"></i>
+                            </div>
+                            <h4>Launch</h4>
+                            <p>Thorough testing and deployment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Client Feedback</span>
+                <h2 class="section-title">What My <span class="highlight">Clients Say</span></h2>
+                <p class="section-description">Hear from entrepreneurs and creatives I've worked with.</p>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-item active">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="bi bi-quote"></i>
+                        </div>
+                        <p>Promise transformed my freelance photography business with a stunning portfolio website. The design perfectly captures my artistic style, and the contact form has brought me numerous new clients. Highly recommended!</p>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client 1">
+                            <div>
+                                <h5>Sarah Johnson</h5>
+                                <span>Professional Photographer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="bi bi-quote"></i>
+                        </div>
+                        <p>As a small business owner, I needed an online presence that stood out. Promise delivered beyond my expectations - the website loads incredibly fast and looks amazing on all devices. The branding work was exceptional too.</p>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Client 2">
+                            <div>
+                                <h5>Michael Chen</h5>
+                                <span>Boutique Owner</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="bi bi-quote"></i>
+                        </div>
+                        <p>Working with Promise was a game-changer for my influencer brand. They created a cohesive visual identity across my website and social media that has significantly increased my engagement rates and sponsorship opportunities.</p>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client 3">
+                            <div>
+                                <h5>Jessica Martinez</h5>
+                                <span>Lifestyle Influencer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-controls">
+                    <button class="testimonial-prev"><i class="bi bi-chevron-left"></i></button>
+                    <button class="testimonial-next"><i class="bi bi-chevron-right"></i></button>
+                </div>
+
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="animate__animated animate__fadeInDown">Ready to Elevate Your Digital Presence?</h2>
+                <p class="animate__animated animate__fadeIn animate__delay-1s">Let's create something amazing together. Get in touch today for a free consultation.</p>
+                <a href="#contact" class="btn btn-light btn-glow animate__animated animate__fadeInUp animate__delay-1s">Start Your Project</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- dev section -->
+
+    <section id="resources" class="resources-section" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Developer Assets</span>
+                <h2 class="section-title">Premium <span class="highlight">Resources</span></h2>
+                <p class="section-description">Handcrafted tools and materials to accelerate your workflow.</p>
+            </div>
+
+            <div class="resource-cards">
+                <div class="resource-line"></div>
+
+                <div class="row g-4">
+                    <!-- Design Freebies -->
+                    <div class="col-md-3 col-6">
+                        <div class="resource-card animate__animated animate__fadeInUp">
+                            <div class="card-inner">
+                                <div class="step-number bg-pink">1</div>
+                                <div class="resource-icon">
+                                    <i class="bi bi-palette-fill"></i>
+                                    <div class="icon-bg"></div>
+                                </div>
+                                <h4>Design Freebies</h4>
+                                <p>PSD, Figma & AI files for your projects</p>
+                                <a href="resouces/designfreebies.html" class="resource-link">
+                                    Explore <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <div class="hover-effect"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Free Resources -->
+                    <div class="col-md-3 col-6">
+                        <div class="resource-card animate__animated animate__fadeInUp animate__delay-1s">
+                            <div class="card-inner">
+                                <div class="step-number bg-blue">2</div>
+                                <div class="resource-icon">
+                                    <i class="bi bi-download"></i>
+                                    <div class="icon-bg"></div>
+                                </div>
+                                <h4>Free Resources <span class="badge bg-primary pulse">New</span></h4>
+                                <p>Fonts, templates & design assets</p>
+                                <a href="resources/downloads.html" class="resource-link">
+                                    Download <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <div class="hover-effect"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tutorial Vault -->
+                    <div class="col-md-3 col-6">
+                        <div class="resource-card animate__animated animate__fadeInUp animate__delay-2s">
+                            <div class="card-inner">
+                                <div class="step-number bg-purple">3</div>
+                                <div class="resource-icon">
+                                    <i class="bi bi-journal-bookmark-fill"></i>
+                                    <div class="icon-bg"></div>
+                                </div>
+                                <h4>Tutorial Vault</h4>
+                                <p>Step-by-step development guides</p>
+                                <a href="resources/tutorials.html" class="resource-link">
+                                    Learn <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <div class="hover-effect"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dev Cheat Sheets -->
+                    <div class="col-md-3 col-6">
+                        <div class="resource-card animate__animated animate__fadeInUp animate__delay-3s">
+                            <div class="card-inner">
+                                <div class="step-number bg-teal">4</div>
+                                <div class="resource-icon">
+                                    <i class="bi bi-file-earmark-code-fill"></i>
+                                    <div class="icon-bg"></div>
+                                </div>
+                                <h4>Cheat Sheets</h4>
+                                <p>Quick reference for developers</p>
+                                <a href="resources/cheatsheet.html" class="resource-link">
+                                    Reference <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <div class="hover-effect"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .resources-section {
+            position: relative;
+        }
+
+        .section-header .highlight {
+            color: #4361ee;
+            position: relative;
+        }
+
+        .section-header .highlight:after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(67, 97, 238, 0.2);
+            z-index: -1;
+        }
+
+        .resource-cards {
+            position: relative;
+            padding-top: 60px;
+        }
+
+        .resource-line {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(67, 97, 238, 0), #4361ee, rgba(67, 97, 238, 0));
+            z-index: 1;
+        }
+
+        .resource-card {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+        }
+
+        .card-inner {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 25px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(67, 97, 238, 0.1);
+        }
+
+        .resource-card:hover .card-inner {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -25px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bg-pink {
+            background: linear-gradient(45deg, #FF6B95, #FF8E53);
+        }
+
+        .bg-blue {
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+        }
+
+        .bg-purple {
+            background: linear-gradient(45deg, #7209B7, #B5179E);
+        }
+
+        .bg-teal {
+            background: linear-gradient(45deg, #4895ef, #4cc9f0);
+        }
+
+        .resource-icon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+        }
+
+        .resource-icon i {
+            position: relative;
+            z-index: 2;
+            font-size: 2.2rem;
+            color: white;
+        }
+
+        .resource-icon .icon-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            top: 0;
+            left: 0;
+            transform: rotate(45deg);
+            opacity: 0.9;
+        }
+
+        .resource-card:nth-child(1) .icon-bg {
+            background: linear-gradient(45deg, #FF6B95, #FF8E53);
+        }
+
+        .resource-card:nth-child(2) .icon-bg {
+            background: linear-gradient(45deg, #4361ee, #4cc9f0);
+        }
+
+        .resource-card:nth-child(3) .icon-bg {
+            background: linear-gradient(45deg, #7209B7, #B5179E);
+        }
+
+        .resource-card:nth-child(4) .icon-bg {
+            background: linear-gradient(45deg, #4895ef, #4cc9f0);
+        }
+
+        .resource-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .resource-card p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: #4361ee;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #3f37c9;
+        }
+
+        .resource-link:hover i {
+            transform: translateX(3px);
+        }
+
+        .hover-effect {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B95, #4361ee, #7209B7, #4895ef);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .resource-card:hover .hover-effect {
+            opacity: 1;
+        }
+
+        .badge.pulse {
+            animation: pulse 2s infinite;
+            position: relative;
+            top: -2px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resource-line {
+                display: none;
+            }
+
+            .resource-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+
+    <!-- Include Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
+
+
+
+
+
+
+
+
+
+    </section> <!-- Contact Section -->
+    <section id="contact" class="contact-section" style="margin-top: 100px; margin-bottom: 100px;">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Get In Touch</span>
+                <h2 class="section-title">Contact <span class="highlight">Me</span></h2>
+                <p class="section-description">Have a project in mind? Let's discuss how I can help bring it to life.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Email Me</h5>
+                                <a href="mailto:hello@promisecreative.com">promisecreative@yahoocom</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Call Me</h5>
+                                <a href="tel:+1234567890">+ (237) 680-834-767</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Location</h5>
+                                <address>Bambili, Bamenda-Cameroon</address>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <!-- <a href="#"><i class="bi bi-dribbble"></i></a>
+                            <a href="#"><i class="bi bi-behance"></i></a> -->
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-github"></i></a>
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-twitter"></i></a>
+                            <a href="#"><i class="bi bi-whatsapp"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <form class="contact-form" id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                        </div>
+
+                        <div class="form-group">
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-glow">Send Message</button>
+                    </form>
+
+                    <div id="formSuccess" class="form-success-message">
+                        <i class="bi bi-check-circle"></i>
+                        <p>Thank you! Your message has been sent successfully. I'll get back to you soon.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <a class="footer-logo" href="#">
+                            <span class="logo-text">Promise</span>
+                            <span class="logo-dot">.</span>
+                        </a>
+                        <p>I craft digital experiences that help individuals and businesses stand out online with custom websites and branding.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Developer Resources</h5>
+                        <ul>
+
+
+                            <!-- Design Resources -->
+                            <li><a href="resouces/designfreebies.html">
+                                    <i class="fas fa-palette me-2"></i> Design Freebies
+                                </a></li>
+
+
+                            <!-- Downloadable Assets -->
+                            <li>
+                                <a href="resouces/downloads.html">
+                                    <i class="fas fa-download me-2"></i> Free Resources
+                                    <span class="badge bg-primary ms-2">New</span>
+                                </a>
+                            </li>
+
+                            <!-- Comprehensive Blog -->
+                            <li><a href="resouces/tutorials.html">
+                                    <i class="fas fa-book-open me-2"></i> Tutorial Vault
+                                </a></li>
+
+                            <!-- Cheat Sheets -->
+                            <li><a href="resouces/cheatsheet.html">
+                                    <i class="fas fa-file-alt me-2"></i> Dev Cheat Sheets
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="">
+                        <h5>Newsletter</h5>
+                        <p>Subscribe to get updates and design tips.</p>
+                        <form class=" newsletter-form">
+                            <input type="email" placeholder="Your Email">
+                            <button type="submit"><i class=" bi bi-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <span id="current-year"></span> Promise Creative. All Rights Reserved.</p>
+
+                        <script>
+                            // Get the current year and update the element
+                            document.getElementById('current-year').textContent = new Date().getFullYear();
+                        </script>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
