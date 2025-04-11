@@ -835,14 +835,15 @@
 
                 <div class="col-lg-7">
                     <form id="contactForm" class="contact-form" action="https://api.formsubmit.co/v1/submit/promisecreative@yahoo.com" method="POST">
-                        <!-- Anti-spam field (hidden) -->
+                        <!-- Anti-spam fields -->
                         <input type="text" name="_honey" style="display:none" aria-hidden="true">
 
                         <!-- FormSubmit configuration -->
                         <input type="hidden" name="_template" value="box">
-                        <input type="hidden" name="_captcha" value="true"> <!-- Enabled for reCAPTCHA -->
+                        <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_subject" value="New Contact Form Submission">
-                        <input type="hidden" name="_next" id="successRedirect" value="https://promisecreative.netlify.app//thank-you.html">
+                        <input type="hidden" name="_next" id="successRedirect" value="https://promisecreative.netlify.app/thank-you.html">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting us! We'll get back to you soon.">
 
                         <!-- Form Fields -->
                         <div class="row">
@@ -866,7 +867,6 @@
                             <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required minlength="10" maxlength="2000"></textarea>
                         </div>
 
-
                         <!-- Messages Container -->
                         <div id="messageContainer" style="margin: 20px 0;"></div>
 
@@ -877,72 +877,90 @@
                             </span>
                         </button>
                     </form>
+                </div>
 
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                        e.preventDefault();
+                        const form = e.target;
+                        const submitBtn = document.getElementById('submitBtn');
+                        const submitText = document.getElementById('submitText');
+                        const spinner = document.getElementById('loadingSpinner');
+                        const messageContainer = document.getElementById('messageContainer');
+                        const clientName = document.getElementById('clientName').value.trim();
 
+                        // Validate form before submission
+                        if (!form.checkValidity()) {
+                            messageContainer.innerHTML = `
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Please fill out all required fields correctly.
+                </div>`;
+                            return;
+                        }
 
-                    <script>
-                        document.getElementById('contactForm').addEventListener('submit', async (e) => {
-                            e.preventDefault();
-                            const form = e.target;
-                            const submitBtn = document.getElementById('submitBtn');
-                            const submitText = document.getElementById('submitText');
-                            const spinner = document.getElementById('loadingSpinner');
-                            const messageContainer = document.getElementById('messageContainer');
-                            const clientName = document.getElementById('clientName').value;
-                            const recaptchaResponse = grecaptcha.getResponse();
+                        // Store name in sessionStorage for thank-you page
+                        sessionStorage.setItem('thankYouName', clientName);
 
+                        // Show loading state
+                        submitText.style.display = 'none';
+                        spinner.style.display = 'inline-block';
+                        submitBtn.disabled = true;
+                        messageContainer.innerHTML = '';
 
+                        try {
+                            // Submit via FormSubmit
+                            const response = await fetch(form.action, {
+                                method: 'POST',
+                                body: new FormData(form),
+                                headers: {
+                                    'Accept': 'application/json'
+                                }
+                            });
 
-                            // Set redirect URL with name in sessionStorage
-                            sessionStorage.setItem('thankYouName', clientName);
+                            const result = await response.json();
 
-                            // Show loading state
-                            submitText.style.display = 'none';
-                            spinner.style.display = 'inline-block';
-                            submitBtn.disabled = true;
-                            messageContainer.innerHTML = '';
+                            if (!response.ok) {
+                                throw new Error(result.message || 'Submission failed. Please try again later.');
+                            }
 
-                            try {
-                                // Submit via FormSubmit
-                                const response = await fetch(form.action, {
-                                    method: 'POST',
-                                    body: new FormData(form),
-                                    headers: {
-                                        'Accept': 'application/json'
-                                    }
-                                });
+                            // Redirect on success
+                            window.location.href = document.getElementById('successRedirect').value;
 
-                                if (!response.ok) throw new Error('Submission failed');
+                        } catch (error) {
+                            let errorMessage = 'Message failed to send. Please try again.';
 
+                            if (error.message.includes('captcha')) {
+                                errorMessage = 'Please complete the CAPTCHA verification.';
+                            } else if (error.message) {
+                                errorMessage = error.message;
+                            }
 
+                            messageContainer.innerHTML = `
+                <div class="alert alert-danger">
+                    <i class="bi bi-exclamation-circle"></i>
+                    ${errorMessage}
+                </div>`;
 
-                                // Redirect on success
-                                window.location.href = document.getElementById('successRedirect').value;
+                            console.error('Form submission error:', error);
+                        } finally {
+                            submitText.style.display = 'inline-block';
+                            spinner.style.display = 'none';
+                            submitBtn.disabled = false;
 
-                            } catch (error) {
-                                messageContainer.innerHTML = `
-                                <div class="alert alert-danger">
-                                    <i class="bi bi-exclamation-circle"></i>
-                                    ${error.message || 'Message failed to send. Please try again.'}
-                                </div>`;
-                                console.error('Error:', error);
-                            } finally {
-                                submitText.style.display = 'inline-block';
-                                spinner.style.display = 'none';
-                                submitBtn.disabled = false;
+                            // Scroll to message container if there's an error
+                            if (messageContainer.innerHTML) {
                                 messageContainer.scrollIntoView({
                                     behavior: 'smooth',
                                     block: 'nearest'
                                 });
                             }
-                        });
-                    </script>
+                        }
+                    });
+                </script>
 
-
-
-
-                </div>
             </div>
+        </div>
     </section>
 
     <!-- Footer -->
