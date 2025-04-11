@@ -756,216 +756,7 @@
     </section>
 
     <style>
-        .resources-section {
-            position: relative;
-        }
 
-        .section-header .highlight {
-            color: #4361ee;
-            position: relative;
-        }
-
-        .section-header .highlight:after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: rgba(67, 97, 238, 0.2);
-            z-index: -1;
-        }
-
-        .resource-cards {
-            position: relative;
-            padding-top: 60px;
-        }
-
-        .resource-line {
-            position: absolute;
-            top: 120px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(67, 97, 238, 0), #4361ee, rgba(67, 97, 238, 0));
-            z-index: 1;
-        }
-
-        .resource-card {
-            position: relative;
-            z-index: 2;
-            height: 100%;
-        }
-
-        .card-inner {
-            background: white;
-            border-radius: 15px;
-            padding: 30px 25px;
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.4s ease;
-            border: 1px solid rgba(67, 97, 238, 0.1);
-        }
-
-        .resource-card:hover .card-inner {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(67, 97, 238, 0.15);
-        }
-
-        .step-number {
-            position: absolute;
-            top: -25px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 1.2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .bg-pink {
-            background: linear-gradient(45deg, #FF6B95, #FF8E53);
-        }
-
-        .bg-blue {
-            background: linear-gradient(45deg, #4361ee, #4cc9f0);
-        }
-
-        .bg-purple {
-            background: linear-gradient(45deg, #7209B7, #B5179E);
-        }
-
-        .bg-teal {
-            background: linear-gradient(45deg, #4895ef, #4cc9f0);
-        }
-
-        .resource-icon {
-            position: relative;
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
-        }
-
-        .resource-icon i {
-            position: relative;
-            z-index: 2;
-            font-size: 2.2rem;
-            color: white;
-        }
-
-        .resource-icon .icon-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
-            top: 0;
-            left: 0;
-            transform: rotate(45deg);
-            opacity: 0.9;
-        }
-
-        .resource-card:nth-child(1) .icon-bg {
-            background: linear-gradient(45deg, #FF6B95, #FF8E53);
-        }
-
-        .resource-card:nth-child(2) .icon-bg {
-            background: linear-gradient(45deg, #4361ee, #4cc9f0);
-        }
-
-        .resource-card:nth-child(3) .icon-bg {
-            background: linear-gradient(45deg, #7209B7, #B5179E);
-        }
-
-        .resource-card:nth-child(4) .icon-bg {
-            background: linear-gradient(45deg, #4895ef, #4cc9f0);
-        }
-
-        .resource-card h4 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .resource-card p {
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            color: #4361ee;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .resource-link i {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .resource-link:hover {
-            color: #3f37c9;
-        }
-
-        .resource-link:hover i {
-            transform: translateX(3px);
-        }
-
-        .hover-effect {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, #FF6B95, #4361ee, #7209B7, #4895ef);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .resource-card:hover .hover-effect {
-            opacity: 1;
-        }
-
-        .badge.pulse {
-            animation: pulse 2s infinite;
-            position: relative;
-            top: -2px;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .resource-line {
-                display: none;
-            }
-
-            .resource-card {
-                margin-bottom: 30px;
-            }
-        }
     </style>
 
     <!-- Include Animate.css for animations -->
@@ -1037,39 +828,121 @@
                     </div>
                 </div>
 
+
+
+
+
+
                 <div class="col-lg-7">
-                    <form class="contact-form" id="contactForm">
+                    <form id="contactForm" class="contact-form" action="https://api.formsubmit.co/v1/submit/promisecreative@yahoo.com" method="POST">
+                        <!-- Anti-spam field (hidden) -->
+                        <input type="text" name="_honey" style="display:none" aria-hidden="true">
+
+                        <!-- FormSubmit configuration -->
+                        <input type="hidden" name="_template" value="box">
+                        <input type="hidden" name="_captcha" value="true"> <!-- Enabled for reCAPTCHA -->
+                        <input type="hidden" name="_subject" value="New Contact Form Submission">
+                        <input type="hidden" name="_next" id="successRedirect" value="https://yourdomain.com/thank-you.html">
+
+                        <!-- Form Fields -->
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name" required id="clientName" minlength="2" maxlength="100">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject" maxlength="150">
                         </div>
 
                         <div class="form-group">
-                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                            <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required minlength="10" maxlength="2000"></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-glow">Send Message</button>
+
+                        <!-- Messages Container -->
+                        <div id="messageContainer" style="margin: 20px 0;"></div>
+
+                        <button type="submit" class="btn btn-primary btn-glow" id="submitBtn">
+                            <span id="submitText">Send Message</span>
+                            <span id="loadingSpinner" style="display:none;">
+                                <i class="bi bi-arrow-repeat spin"></i> Sending...
+                            </span>
+                        </button>
                     </form>
 
-                    <div id="formSuccess" class="form-success-message">
-                        <i class="bi bi-check-circle"></i>
-                        <p>Thank you! Your message has been sent successfully. I'll get back to you soon.</p>
-                    </div>
+
+
+                    <script>
+                        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            const form = e.target;
+                            const submitBtn = document.getElementById('submitBtn');
+                            const submitText = document.getElementById('submitText');
+                            const spinner = document.getElementById('loadingSpinner');
+                            const messageContainer = document.getElementById('messageContainer');
+                            const clientName = document.getElementById('clientName').value;
+                            const recaptchaResponse = grecaptcha.getResponse();
+
+
+
+                            // Set redirect URL with name in sessionStorage
+                            sessionStorage.setItem('thankYouName', clientName);
+
+                            // Show loading state
+                            submitText.style.display = 'none';
+                            spinner.style.display = 'inline-block';
+                            submitBtn.disabled = true;
+                            messageContainer.innerHTML = '';
+
+                            try {
+                                // Submit via FormSubmit
+                                const response = await fetch(form.action, {
+                                    method: 'POST',
+                                    body: new FormData(form),
+                                    headers: {
+                                        'Accept': 'application/json'
+                                    }
+                                });
+
+                                if (!response.ok) throw new Error('Submission failed');
+
+
+
+                                // Redirect on success
+                                window.location.href = document.getElementById('successRedirect').value;
+
+                            } catch (error) {
+                                messageContainer.innerHTML = `
+                                <div class="alert alert-danger">
+                                    <i class="bi bi-exclamation-circle"></i>
+                                    ${error.message || 'Message failed to send. Please try again.'}
+                                </div>`;
+                                console.error('Error:', error);
+                            } finally {
+                                submitText.style.display = 'inline-block';
+                                spinner.style.display = 'none';
+                                submitBtn.disabled = false;
+                                messageContainer.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'nearest'
+                                });
+                            }
+                        });
+                    </script>
+
+
+
+
                 </div>
             </div>
-        </div>
     </section>
 
     <!-- Footer -->
