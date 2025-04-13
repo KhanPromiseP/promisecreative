@@ -378,7 +378,7 @@
 
 
     <!-- Responsive Showcase Section -->
-    <section class="showcase-section" style="margin-top: 100px; margin-bottom: 100px;">
+    <section class="showcase-section" style="margin-top: 90px; margin-bottom: 90px;">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Adaptive Design</span>
@@ -651,7 +651,7 @@
             <div class="cta-content">
                 <h2 class="animate__animated animate__fadeInDown">Ready to Elevate Your Digital Presence?</h2>
                 <p class="animate__animated animate__fadeIn animate__delay-1s">Let's create something amazing together. Get in touch today for a free consultation.</p>
-                <a href="#contact" class="btn btn-light btn-glow animate__animated animate__fadeInUp animate__delay-1s">Start Your Project</a>
+                <a href="#contact" class="btn btn-light btn-glow animate__animated animate animate__delay-1s">Start Your Project</a>
             </div>
         </div>
     </section>
@@ -663,7 +663,350 @@
 
     <!-- dev section -->
 
-    <section id="resources" class="resources-section" style="margin-top: 100px; margin-bottom: 100px;">
+    <style>
+        /* Base Styles */
+        :root {
+            --brand-blue: #2962ff;
+            --brand-blue-dark: #0039cb;
+            --brand-blue-light: #768fff;
+            --accent-pink: #ff4081;
+            --accent-purple: #9c27b0;
+            --accent-teal: #e1e11c;
+            --text-dark: #263238;
+            --text-light: #eceff1;
+        }
+
+        .resources-section {
+            position: relative;
+            padding: 100px 0;
+            margin: 100px 0;
+            overflow: hidden;
+            background: linear-gradient(135deg,
+                    rgba(41, 98, 255, 0.1) 0%,
+                    rgba(156, 39, 176, 0.1) 50%,
+                    rgba(255, 64, 129, 0.1) 100%);
+        }
+
+        .resources-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%,
+                    rgba(41, 98, 255, 0.15) 0%,
+                    transparent 40%),
+                radial-gradient(circle at 80% 70%,
+                    rgba(255, 64, 129, 0.15) 0%,
+                    transparent 40%);
+            z-index: -1;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-subtitle {
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--brand-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-subtitle::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--brand-blue);
+            border-radius: 3px;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .section-title .highlight {
+            color: var(--brand-blue);
+            position: relative;
+        }
+
+        .section-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(41, 98, 255, 0.2);
+            z-index: -1;
+            border-radius: 3px;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: #546e7a;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .resource-cards {
+            position: relative;
+        }
+
+        .resource-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                    rgba(41, 98, 255, 0.2) 0%,
+                    rgba(255, 64, 129, 0.2) 50%,
+                    rgba(156, 39, 176, 0.2) 100%);
+            z-index: 0;
+        }
+
+        .resource-card {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            perspective: 1000px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 30px 25px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(41, 98, 255, 0.1);
+            transition: all 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            transform-style: preserve-3d;
+            overflow: hidden;
+        }
+
+        .resource-card:hover .card-inner {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(41, 98, 255, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .bg-pink {
+            background: var(--accent-pink);
+        }
+
+        .bg-blue {
+            background: var(--brand-blue);
+        }
+
+        .bg-purple {
+            background: var(--accent-purple);
+        }
+
+        .bg-teal {
+            background: var(--accent-teal);
+        }
+
+        .resource-icon {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin-bottom: 25px;
+        }
+
+        .resource-icon i {
+            position: relative;
+            font-size: 32px;
+            color: white;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .resource-icon .icon-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--brand-blue);
+            border-radius: 18px;
+            transform: rotate(45deg);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:nth-child(1) .icon-bg {
+            background: linear-gradient(135deg, var(--accent-pink), #ff6b9d);
+        }
+
+        .resource-card:nth-child(2) .icon-bg {
+            background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-light));
+        }
+
+        .resource-card:nth-child(3) .icon-bg {
+            background: linear-gradient(135deg, var(--accent-purple), #d05ce3);
+        }
+
+        .resource-card:nth-child(4) .icon-bg {
+            background: linear-gradient(135deg, var(--accent-teal), #4dd0e1);
+        }
+
+        .resource-card:hover .icon-bg {
+            transform: rotate(0deg);
+            border-radius: 12px;
+        }
+
+        .resource-card h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .resource-card h4::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--brand-blue);
+            transition: all 0.3s ease;
+        }
+
+        .resource-card:hover h4::after {
+            width: 60px;
+        }
+
+        .resource-card p {
+            color: #607d8b;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 600;
+            color: var(--brand-blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--brand-blue-dark);
+        }
+
+        .resource-link:hover i {
+            transform: translateX(3px);
+        }
+
+        .badge.pulse {
+            animation: pulse 2s infinite;
+            margin-left: 8px;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(41, 98, 255, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(41, 98, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(41, 98, 255, 0);
+            }
+        }
+
+        .hover-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                    rgba(41, 98, 255, 0.03) 0%,
+                    rgba(255, 64, 129, 0.03) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .resource-card:hover .hover-effect {
+            opacity: 1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .resource-line {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .resources-section {
+                padding: 60px 0;
+                margin: 60px 0;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .resource-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+
+    <section id="resources" class="resources-section">
         <div class="container">
             <div class="section-header text-center">
                 <span class="section-subtitle">Developer Assets</span>
@@ -755,26 +1098,10 @@
         </div>
     </section>
 
-    <style>
-
-    </style>
-
-    <!-- Include Animate.css for animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
 
 
-
-
-
-
-
-
-
-    </section> <!-- Contact Section -->
-    <section id="contact" class="contact-section" style="margin-top: 100px; margin-bottom: 100px;">
+    <section id="contact" class="contact-section" style="margin-top: 90px; margin-bottom: 90px;">
         <div class="container">
             <div class="section-header text-center">
                 <span class="section-subtitle">Get In Touch</span>
@@ -791,7 +1118,7 @@
                             </div>
                             <div class="contact-details">
                                 <h5>Email Me</h5>
-                                <a href="mailto:hello@promisecreative.com">promisecreative@yahoocom</a>
+                                <a href="mailto:promisecreative@yahoo.com">promisecreative@yahoo.com</a>
                             </div>
                         </div>
 
@@ -801,7 +1128,7 @@
                             </div>
                             <div class="contact-details">
                                 <h5>Call Me</h5>
-                                <a href="tel:+1234567890">+ (237) 680-834-767</a>
+                                <a href="tel:+237680834767">+ (237) 680-834-767</a>
                             </div>
                         </div>
 
@@ -816,8 +1143,6 @@
                         </div>
 
                         <div class="social-links">
-                            <!-- <a href="#"><i class="bi bi-dribbble"></i></a>
-                            <a href="#"><i class="bi bi-behance"></i></a> -->
                             <a href="https://www.instagram.com/pennpromise123/"><i class="bi bi-instagram"></i></a>
                             <a href="https://github.com/KhanPromiseP/"><i class="bi bi-github"></i></a>
                             <a href="https://web.facebook.com/profile.php?id=61574957841948"><i class="bi bi-facebook"></i></a>
@@ -828,21 +1153,17 @@
                     </div>
                 </div>
 
-
-
-
-
-
                 <div class="col-lg-7">
-                    <form id="contactForm" class="contact-form" action="https://api.formsubmit.co/v1/submit/promisecreative@yahoo.com" method="POST">
+                    <!-- Form with added ID for backup functionality -->
+                    <form id="contactForm" class="contact-form" action="https://formsubmit.co/khanpennpromise@gmail.com" method="POST" style="opacity: 1 !important; display: block !important;">
                         <!-- Anti-spam fields -->
                         <input type="text" name="_honey" style="display:none" aria-hidden="true">
+                        <input type="hidden" name="_captcha" value="false">
 
                         <!-- FormSubmit configuration -->
                         <input type="hidden" name="_template" value="box">
-                        <input type="hidden" name="_captcha" value="true">
                         <input type="hidden" name="_subject" value="New Contact Form Submission">
-                        <input type="hidden" name="_next" id="successRedirect" value="https://promisecreative.netlify.app/thank-you.html">
+                        <input type="hidden" name="_next" id="successRedirect" value="http://127.0.0.1:5500/thank-you.html">
                         <input type="hidden" name="_autoresponse" value="Thank you for contacting us! We'll get back to you soon.">
 
                         <!-- Form Fields -->
@@ -867,8 +1188,8 @@
                             <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required minlength="10" maxlength="2000"></textarea>
                         </div>
 
-                        <!-- Messages Container -->
-                        <div id="messageContainer" style="margin: 20px 0;"></div>
+                        <!-- Messages Container with minimum height to prevent layout shift -->
+                        <div id="messageContainer" style="margin: 20px 0; min-height: 60px;"></div>
 
                         <button type="submit" class="btn btn-primary btn-glow" id="submitBtn">
                             <span id="submitText">Send Message</span>
@@ -880,9 +1201,33 @@
                 </div>
 
                 <script>
+                    // Backup all form data before submission
+                    function backupFormData(form) {
+                        const formData = {};
+                        Array.from(form.elements).forEach(element => {
+                            if (element.name) {
+                                formData[element.name] = element.value;
+                            }
+                        });
+                        return formData;
+                    }
+
+                    // Restore form data if submission fails
+                    function restoreFormData(form, backup) {
+                        Array.from(form.elements).forEach(element => {
+                            if (element.name && backup[element.name] !== undefined) {
+                                element.value = backup[element.name];
+                            }
+                        });
+                    }
+
                     document.getElementById('contactForm').addEventListener('submit', async (e) => {
                         e.preventDefault();
                         const form = e.target;
+
+                        // Create backup of current form data
+                        const formBackup = backupFormData(form);
+
                         const submitBtn = document.getElementById('submitBtn');
                         const submitText = document.getElementById('submitText');
                         const spinner = document.getElementById('loadingSpinner');
@@ -892,10 +1237,10 @@
                         // Validate form before submission
                         if (!form.checkValidity()) {
                             messageContainer.innerHTML = `
-                <div class="alert alert-warning">
-                    <i class="bi bi-exclamation-triangle"></i>
-                    Please fill out all required fields correctly.
-                </div>`;
+                            <div class="alert alert-warning">
+                                <i class="bi bi-exclamation-triangle"></i>
+                                Please fill out all required fields correctly.
+                            </div>`;
                             return;
                         }
 
@@ -909,6 +1254,12 @@
                         messageContainer.innerHTML = '';
 
                         try {
+                            console.log('Attempting form submission...');
+
+                            // Force form to remain visible (double protection)
+                            form.style.opacity = '1';
+                            form.style.display = 'block';
+
                             // Submit via FormSubmit
                             const response = await fetch(form.action, {
                                 method: 'POST',
@@ -918,18 +1269,25 @@
                                 }
                             });
 
-                            const result = await response.json();
+                            console.log('Response received:', response);
 
                             if (!response.ok) {
-                                throw new Error(result.message || 'Submission failed. Please try again later.');
+                                const errorData = await response.json();
+                                console.error('Submission error:', errorData);
+                                throw new Error(errorData.message || 'Submission failed. Please try again later.');
                             }
 
-                            // Redirect on success
+                            console.log('Form submitted successfully, redirecting...');
+                            // Only redirect on success
                             window.location.href = document.getElementById('successRedirect').value;
 
                         } catch (error) {
-                            let errorMessage = 'Message failed to send. Please try again.';
+                            console.error('Form submission error:', error);
 
+                            // Restore form data from backup
+                            restoreFormData(form, formBackup);
+
+                            let errorMessage = 'Message failed to send. Please try again.';
                             if (error.message.includes('captcha')) {
                                 errorMessage = 'Please complete the CAPTCHA verification.';
                             } else if (error.message) {
@@ -937,12 +1295,16 @@
                             }
 
                             messageContainer.innerHTML = `
-                <div class="alert alert-danger">
-                    <i class="bi bi-exclamation-circle"></i>
-                    ${errorMessage}
-                </div>`;
+                            <div class="alert alert-danger">
+                                <i class="bi bi-exclamation-circle"></i>
+                                ${errorMessage}
+                            </div>`;
 
-                            console.error('Form submission error:', error);
+                            // Triple protection to keep form visible
+                            form.style.opacity = '1';
+                            form.style.display = 'block';
+                            form.removeAttribute('hidden');
+
                         } finally {
                             submitText.style.display = 'inline-block';
                             spinner.style.display = 'none';
@@ -958,7 +1320,6 @@
                         }
                     });
                 </script>
-
             </div>
         </div>
     </section>
