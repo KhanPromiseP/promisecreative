@@ -378,7 +378,7 @@
 
 
     <!-- Responsive Showcase Section -->
-    <section class="showcase-section" style="margin-top: 90px; margin-bottom: 90px;">
+    <section class="showcase-section" style="margin-top: 40px; margin-bottom: 40px;">
         <div class="container">
             <div class="section-header">
                 <span class="section-subtitle">Adaptive Design</span>
@@ -661,352 +661,10 @@
 
 
 
-    <!-- dev section -->
 
-    <style>
-        /* Base Styles */
-        :root {
-            --brand-blue: #2962ff;
-            --brand-blue-dark: #0039cb;
-            --brand-blue-light: #768fff;
-            --accent-pink: #ff4081;
-            --accent-purple: #9c27b0;
-            --accent-teal: #e1e11c;
-            --text-dark: #263238;
-            --text-light: #eceff1;
-        }
+    <!-- resource section -->
 
-        .resources-section {
-            position: relative;
-            padding: 100px 0;
-            margin: 100px 0;
-            overflow: hidden;
-            background: linear-gradient(135deg,
-                    rgba(41, 98, 255, 0.1) 0%,
-                    rgba(156, 39, 176, 0.1) 50%,
-                    rgba(255, 64, 129, 0.1) 100%);
-        }
-
-        .resources-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%,
-                    rgba(41, 98, 255, 0.15) 0%,
-                    transparent 40%),
-                radial-gradient(circle at 80% 70%,
-                    rgba(255, 64, 129, 0.15) 0%,
-                    transparent 40%);
-            z-index: -1;
-        }
-
-        .section-header {
-            margin-bottom: 60px;
-        }
-
-        .section-subtitle {
-            display: inline-block;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--brand-blue);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .section-subtitle::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: var(--brand-blue);
-            border-radius: 3px;
-        }
-
-        .section-title {
-            font-size: 42px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .section-title .highlight {
-            color: var(--brand-blue);
-            position: relative;
-        }
-
-        .section-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 5px;
-            left: 0;
-            width: 100%;
-            height: 10px;
-            background: rgba(41, 98, 255, 0.2);
-            z-index: -1;
-            border-radius: 3px;
-        }
-
-        .section-description {
-            font-size: 18px;
-            color: #546e7a;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .resource-cards {
-            position: relative;
-        }
-
-        .resource-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg,
-                    rgba(41, 98, 255, 0.2) 0%,
-                    rgba(255, 64, 129, 0.2) 50%,
-                    rgba(156, 39, 176, 0.2) 100%);
-            z-index: 0;
-        }
-
-        .resource-card {
-            position: relative;
-            z-index: 1;
-            height: 100%;
-            perspective: 1000px;
-        }
-
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            padding: 30px 25px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(41, 98, 255, 0.1);
-            transition: all 0.6s cubic-bezier(0.17, 0.67, 0.83, 0.67);
-            transform-style: preserve-3d;
-            overflow: hidden;
-        }
-
-        .resource-card:hover .card-inner {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(41, 98, 255, 0.2);
-        }
-
-        .step-number {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .bg-pink {
-            background: var(--accent-pink);
-        }
-
-        .bg-blue {
-            background: var(--brand-blue);
-        }
-
-        .bg-purple {
-            background: var(--accent-purple);
-        }
-
-        .bg-teal {
-            background: var(--accent-teal);
-        }
-
-        .resource-icon {
-            position: relative;
-            width: 70px;
-            height: 70px;
-            margin-bottom: 25px;
-        }
-
-        .resource-icon i {
-            position: relative;
-            font-size: 32px;
-            color: white;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-        }
-
-        .resource-icon .icon-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--brand-blue);
-            border-radius: 18px;
-            transform: rotate(45deg);
-            transition: all 0.3s ease;
-        }
-
-        .resource-card:nth-child(1) .icon-bg {
-            background: linear-gradient(135deg, var(--accent-pink), #ff6b9d);
-        }
-
-        .resource-card:nth-child(2) .icon-bg {
-            background: linear-gradient(135deg, var(--brand-blue), var(--brand-blue-light));
-        }
-
-        .resource-card:nth-child(3) .icon-bg {
-            background: linear-gradient(135deg, var(--accent-purple), #d05ce3);
-        }
-
-        .resource-card:nth-child(4) .icon-bg {
-            background: linear-gradient(135deg, var(--accent-teal), #4dd0e1);
-        }
-
-        .resource-card:hover .icon-bg {
-            transform: rotate(0deg);
-            border-radius: 12px;
-        }
-
-        .resource-card h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            position: relative;
-            display: inline-block;
-        }
-
-        .resource-card h4::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background: var(--brand-blue);
-            transition: all 0.3s ease;
-        }
-
-        .resource-card:hover h4::after {
-            width: 60px;
-        }
-
-        .resource-card p {
-            color: #607d8b;
-            font-size: 15px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .resource-link {
-            display: inline-flex;
-            align-items: center;
-            font-weight: 600;
-            color: var(--brand-blue);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .resource-link i {
-            margin-left: 5px;
-            transition: transform 0.3s ease;
-        }
-
-        .resource-link:hover {
-            color: var(--brand-blue-dark);
-        }
-
-        .resource-link:hover i {
-            transform: translateX(3px);
-        }
-
-        .badge.pulse {
-            animation: pulse 2s infinite;
-            margin-left: 8px;
-            font-size: 12px;
-            vertical-align: middle;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(41, 98, 255, 0.7);
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(41, 98, 255, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(41, 98, 255, 0);
-            }
-        }
-
-        .hover-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg,
-                    rgba(41, 98, 255, 0.03) 0%,
-                    rgba(255, 64, 129, 0.03) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .resource-card:hover .hover-effect {
-            opacity: 1;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            .resource-line {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .resources-section {
-                padding: 60px 0;
-                margin: 60px 0;
-            }
-
-            .section-title {
-                font-size: 30px;
-            }
-
-            .resource-card {
-                margin-bottom: 30px;
-            }
-        }
-    </style>
-
-    <section id="resources" class="resources-section">
+    <!-- <section id="resources" class="resources-section">
         <div class="container">
             <div class="section-header text-center">
                 <span class="section-subtitle">Developer Assets</span>
@@ -1015,88 +673,87 @@
             </div>
 
             <div class="resource-cards">
-                <div class="resource-line"></div>
 
                 <div class="row g-4">
                     <!-- Design Freebies -->
-                    <div class="col-md-3 col-6">
-                        <div class="resource-card animate__animated animate__fadeInUp">
-                            <div class="card-inner">
-                                <div class="step-number bg-pink">1</div>
-                                <div class="resource-icon">
-                                    <i class="bi bi-palette-fill"></i>
-                                    <div class="icon-bg"></div>
-                                </div>
-                                <h4>Design Freebies</h4>
-                                <p>PSD, Figma & AI files for your projects</p>
-                                <a href="resouces/designfreebies.html" class="resource-link">
-                                    Explore <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <div class="hover-effect"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Free Resources -->
-                    <div class="col-md-3 col-6">
-                        <div class="resource-card animate__animated animate__fadeInUp animate__delay-1s">
-                            <div class="card-inner">
-                                <div class="step-number bg-blue">2</div>
-                                <div class="resource-icon">
-                                    <i class="bi bi-download"></i>
-                                    <div class="icon-bg"></div>
-                                </div>
-                                <h4>Free Resources <span class="badge bg-primary pulse">New</span></h4>
-                                <p>Fonts, templates & design assets</p>
-                                <a href="resources/downloads.html" class="resource-link">
-                                    Download <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <div class="hover-effect"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tutorial Vault -->
-                    <div class="col-md-3 col-6">
-                        <div class="resource-card animate__animated animate__fadeInUp animate__delay-2s">
-                            <div class="card-inner">
-                                <div class="step-number bg-purple">3</div>
-                                <div class="resource-icon">
-                                    <i class="bi bi-journal-bookmark-fill"></i>
-                                    <div class="icon-bg"></div>
-                                </div>
-                                <h4>Tutorial Vault</h4>
-                                <p>Step-by-step development guides</p>
-                                <a href="resources/tutorials.html" class="resource-link">
-                                    Learn <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <div class="hover-effect"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dev Cheat Sheets -->
-                    <div class="col-md-3 col-6">
-                        <div class="resource-card animate__animated animate__fadeInUp animate__delay-3s">
-                            <div class="card-inner">
-                                <div class="step-number bg-teal">4</div>
-                                <div class="resource-icon">
-                                    <i class="bi bi-file-earmark-code-fill"></i>
-                                    <div class="icon-bg"></div>
-                                </div>
-                                <h4>Cheat Sheets</h4>
-                                <p>Quick reference for developers</p>
-                                <a href="resources/cheatsheet.html" class="resource-link">
-                                    Reference <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <div class="hover-effect"></div>
-                            </div>
-                        </div>
-                    </div>
+    <!-- <div class="col-md-3 col-6">
+        <div class="resource-card animate__animated animate__fadeInUp">
+            <div class="card-inner">
+                <div class="step-number bg-pink">1</div>
+                <div class="resource-icon">
+                    <i class="bi bi-palette-fill"></i>
+                    <div class="icon-bg"></div>
                 </div>
+                <h4>Design Freebies</h4>
+                <p>PSD, Figma & AI files for your projects</p>
+                <a href="resouces/designfreebies.html" class="resource-link">
+                    Explore <i class="bi bi-arrow-right"></i>
+                </a>
+                <div class="hover-effect"></div>
             </div>
         </div>
-    </section>
+    </div> -->
+
+    <!-- Free Resources -->
+    <!-- <div class="col-md-3 col-6">
+        <div class="resource-card animate__animated animate__fadeInUp animate__delay-1s">
+            <div class="card-inner">
+                <div class="step-number bg-blue">2</div>
+                <div class="resource-icon">
+                    <i class="bi bi-download"></i>
+                    <div class="icon-bg"></div>
+                </div>
+                <h4>Free Resources <span class="badge bg-primary pulse">New</span></h4>
+                <p>Fonts, templates & design assets</p>
+                <a href="resouces/downloads.html" class="resource-link">
+                    Download <i class="bi bi-arrow-right"></i>
+                </a>
+                <div class="hover-effect"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Tutorial Vault -->
+    <!-- <div class="col-md-3 col-6">
+        <div class="resource-card animate__animated animate__fadeInUp animate__delay-2s">
+            <div class="card-inner">
+                <div class="step-number bg-purple">3</div>
+                <div class="resource-icon">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                    <div class="icon-bg"></div>
+                </div>
+                <h4>Tutorial Vault</h4>
+                <p>Step-by-step development guides</p>
+                <a href="resouces/tutorials.html" class="resource-link">
+                    Learn <i class="bi bi-arrow-right"></i>
+                </a>
+                <div class="hover-effect"></div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- Dev Cheat Sheets -->
+    <!-- <div class="col-md-3 col-6">
+        <div class="resource-card animate__animated animate__fadeInUp animate__delay-3s">
+            <div class="card-inner">
+                <div class="step-number bg-teal">4</div>
+                <div class="resource-icon">
+                    <i class="bi bi-file-earmark-code-fill"></i>
+                    <div class="icon-bg"></div>
+                </div>
+                <h4>Cheat Sheets</h4>
+                <p>Quick reference for developers</p>
+                <a href="resources/cheatsheet.html" class="resource-link">
+                    Reference <i class="bi bi-arrow-right"></i>
+                </a>
+                <div class="hover-effect"></div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div> -->
+    <!-- </section> -->
 
 
 
@@ -1328,7 +985,7 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-5">
                     <div class="footer-about">
                         <a class="footer-logo" href="#">
                             <span class="logo-text">Promise</span>
@@ -1338,7 +995,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-md-6">
+                <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
                         <h5>Quick Links</h5>
                         <ul>
@@ -1351,19 +1008,16 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
                         <h5>Developer Resources</h5>
                         <ul>
 
 
-                            <!-- Design Resources -->
                             <li><a href="resouces/designfreebies.html">
                                     <i class="fas fa-palette me-2"></i> Design Freebies
                                 </a></li>
 
-
-                            <!-- Downloadable Assets -->
                             <li>
                                 <a href="resouces/downloads.html">
                                     <i class="fas fa-download me-2"></i> Free Resources
@@ -1371,20 +1025,18 @@
                                 </a>
                             </li>
 
-                            <!-- Comprehensive Blog -->
                             <li><a href="resouces/tutorials.html">
                                     <i class="fas fa-book-open me-2"></i> Tutorial Vault
                                 </a></li>
 
-                            <!-- Cheat Sheets -->
                             <li><a href="resouces/cheatsheet.html">
                                     <i class="fas fa-file-alt me-2"></i> Dev Cheat Sheets
                                 </a></li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="">
                         <h5>Newsletter</h5>
                         <p>Subscribe to get updates and design tips.</p>
@@ -1408,8 +1060,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="footer-legal">
-                            <a href="#">Privacy Policy</a>
-                            <a href="#">Terms of Service</a>
+                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="terms.html">Terms of Service</a>
                         </div>
                     </div>
                 </div>

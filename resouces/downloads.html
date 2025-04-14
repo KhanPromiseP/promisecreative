@@ -7,30 +7,101 @@
     <title>Premium Resources | PromiseCreative</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Base Styles from your site */
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --success: #4cc9f0;
-            --warning: #f72585;
+            --primary-color: #6c63ff;
+            --secondary-color: #4d44db;
+            --accent-color: #ff6584;
+            --dark-color: #2d2d39;
+            --light-color: #f8f9fa;
+            --text-color: #4a4a4a;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --black: #000000;
+            --gray: #e9ecef;
+            --dark-gray: #343a40;
+            --transition: all 0.3s ease;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 8px;
+            --glow: 0 0 15px rgba(108, 99, 255, 0.5);
+        }
+
+        [data-theme="dark"] {
+            --dark-color: #f8f9fa;
+            --light-color: #2d2d39;
+            --text-color: #e9ecef;
+            --text-light: #adb5bd;
+            --gray: #343a40;
+            --dark-gray: #e9ecef;
+            --white: #212529;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: #f5f7ff;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-color);
             line-height: 1.6;
+            overflow-x: hidden;
+            transition: var(--transition);
         }
 
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Custom styles for the resources page */
         .resource-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: var(--white);
             padding: 4rem 0;
             margin-bottom: 3rem;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.2);
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow-hover);
+            text-align: center;
         }
 
         .resource-categories {
@@ -44,32 +115,47 @@
         .category-btn {
             background: rgba(255, 255, 255, 0.15);
             border: none;
-            color: white;
+            color: var(--white);
             padding: 8px 20px;
             border-radius: 50px;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-weight: 500;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
         }
 
         .category-btn:hover,
         .category-btn.active {
-            background: white;
-            color: var(--primary);
+            background: var(--white);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 3rem;
         }
 
         .resource-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--white);
+            border-radius: var(--border-radius);
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            margin-bottom: 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             border: 1px solid rgba(0, 0, 0, 0.03);
         }
 
         .resource-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-hover);
         }
 
         .card-header {
@@ -82,12 +168,12 @@
         .card-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            border-radius: 12px;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            border-radius: var(--border-radius);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             font-size: 1.5rem;
             margin-right: 15px;
             flex-shrink: 0;
@@ -99,35 +185,39 @@
 
         .card-footer {
             padding: 15px 20px;
-            background: rgba(67, 97, 238, 0.03);
+            background: rgba(108, 99, 255, 0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .download-btn {
-            background: var(--primary);
-            color: white;
+            background: var(--primary-color);
+            color: var(--white);
             border: none;
             padding: 8px 20px;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             font-weight: 500;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
         }
 
         .download-btn:hover {
-            background: var(--secondary);
+            background: var(--secondary-color);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
         }
 
         .file-meta {
             display: flex;
             gap: 15px;
             font-size: 0.85rem;
-            color: #666;
+            color: var(--text-light);
         }
 
         .file-meta span {
@@ -136,9 +226,26 @@
             gap: 5px;
         }
 
+        .badge {
+            display: inline-block;
+            padding: 0.35em 0.65em;
+            font-size: 0.75em;
+            font-weight: 700;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 50px;
+        }
+
+        .badge-light {
+            background-color: var(--gray);
+            color: var(--text-color);
+        }
+
         .badge-popular {
-            background: var(--warning);
-            color: white;
+            background: var(--accent-color);
+            color: var(--white);
             padding: 3px 10px;
             border-radius: 50px;
             font-size: 0.7rem;
@@ -160,7 +267,7 @@
             z-index: 9999;
             opacity: 0;
             pointer-events: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .download-modal.active {
@@ -169,14 +276,14 @@
         }
 
         .modal-content {
-            background: white;
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: var(--border-radius);
             width: 90%;
             max-width: 500px;
             padding: 30px;
             text-align: center;
             transform: translateY(20px);
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .download-modal.active .modal-content {
@@ -185,7 +292,7 @@
 
         .progress-bar {
             height: 10px;
-            background: rgba(67, 97, 238, 0.2);
+            background: rgba(108, 99, 255, 0.2);
             border-radius: 5px;
             margin: 20px 0;
             overflow: hidden;
@@ -193,7 +300,7 @@
 
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             width: 0%;
             transition: width 0.5s ease;
         }
@@ -204,19 +311,62 @@
 
         /* Newsletter */
         .newsletter-card {
-            background: linear-gradient(135deg, #4cc9f0, #4361ee);
-            color: white;
-            border-radius: 15px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: var(--white);
+            border-radius: var(--border-radius);
             padding: 30px;
             margin: 3rem 0;
-            box-shadow: 0 10px 30px rgba(76, 201, 240, 0.3);
+            box-shadow: var(--shadow-hover);
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .form-control {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .resource-header {
+                padding: 3rem 0;
+            }
+
+            .resource-categories {
+                gap: 8px;
+            }
+
+            .category-btn {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="resource-header text-center">
+    <header class="resource-header">
         <div class="container">
             <h1 class="display-4 fw-bold mb-3">Premium Resources Library</h1>
             <p class="lead mb-4">High-quality assets to accelerate your development and design workflow</p>
@@ -252,9 +402,9 @@
                     <div class="card-body">
                         <p>Complete collection of HTML5/CSS3/JS templates with modern design patterns and best practices documentation.</p>
                         <div class="d-flex gap-2 mb-3">
-                            <span class="badge bg-light text-dark">HTML</span>
-                            <span class="badge bg-light text-dark">CSS</span>
-                            <span class="badge bg-light text-dark">JavaScript</span>
+                            <span class="badge badge-light">HTML</span>
+                            <span class="badge badge-light">CSS</span>
+                            <span class="badge badge-light">JavaScript</span>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -273,7 +423,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="resource-card">
                     <div class="card-header">
-                        <div class="card-icon bg-success">
+                        <div class="card-icon">
                             <i class="fas fa-palette"></i>
                         </div>
                         <div>
@@ -287,9 +437,9 @@
                     <div class="card-body">
                         <p>Complete Figma UI kit with 150+ components, color systems, and typography scales for professional projects.</p>
                         <div class="d-flex gap-2 mb-3">
-                            <span class="badge bg-light text-dark">Figma</span>
-                            <span class="badge bg-light text-dark">UI Kit</span>
-                            <span class="badge bg-light text-dark">Components</span>
+                            <span class="badge badge-light">Figma</span>
+                            <span class="badge badge-light">UI Kit</span>
+                            <span class="badge badge-light">Components</span>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -308,7 +458,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="resource-card">
                     <div class="card-header">
-                        <div class="card-icon bg-warning">
+                        <div class="card-icon">
                             <i class="fas fa-brain"></i>
                         </div>
                         <div>
@@ -321,9 +471,9 @@
                     <div class="card-body">
                         <p>Time management strategies from top billionaires and CEOs. Includes worksheets and daily planners.</p>
                         <div class="d-flex gap-2 mb-3">
-                            <span class="badge bg-light text-dark">PDF</span>
-                            <span class="badge bg-light text-dark">Worksheets</span>
-                            <span class="badge bg-light text-dark">Planners</span>
+                            <span class="badge badge-light">PDF</span>
+                            <span class="badge badge-light">Worksheets</span>
+                            <span class="badge badge-light">Planners</span>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -338,17 +488,118 @@
                 </div>
             </div>
 
-            <!-- Add more resource cards following the same structure -->
+            <!-- Resource 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-font"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Modern Font Collection</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 10 Jul 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Curated collection of 25 premium fonts for web and print with commercial licenses included.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge badge-light">Fonts</span>
+                            <span class="badge badge-light">Typography</span>
+                            <span class="badge badge-light">OTF/TTF</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 2,150+</span>
+                            <span><i class="fas fa-database"></i> 78.3 MB</span>
+                        </div>
+                        <button class="download-btn" data-file="modern-font-collection.zip">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 5 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">Mobile UI Templates</h3>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 5 Aug 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>50+ customizable mobile app screens for iOS and Android in Sketch, Figma, and Adobe XD formats.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge badge-light">Mobile</span>
+                            <span class="badge badge-light">UI/UX</span>
+                            <span class="badge badge-light">Templates</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 1,780+</span>
+                            <span><i class="fas fa-database"></i> 32.7 MB</span>
+                        </div>
+                        <button class="download-btn" data-file="mobile-ui-templates.zip">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource 6 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div>
+                            <h3 class="h5 mb-1">API Development Kit</h3>
+                            <span class="badge-popular">NEW</span>
+                            <div class="file-meta">
+                                <span><i class="far fa-calendar-alt"></i> Updated: 20 Aug 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Complete toolkit for building RESTful APIs with Node.js, Express, and MongoDB including authentication and documentation.</p>
+                        <div class="d-flex gap-2 mb-3">
+                            <span class="badge badge-light">Node.js</span>
+                            <span class="badge badge-light">API</span>
+                            <span class="badge badge-light">Backend</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="file-meta">
+                            <span><i class="fas fa-download"></i> 950+</span>
+                            <span><i class="fas fa-database"></i> 18.9 MB</span>
+                        </div>
+                        <button class="download-btn" data-file="api-development-kit.zip">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Newsletter -->
-        <div class="newsletter-card text-center">
+        <div class="newsletter-card">
             <h2 class="h1 mb-3">Get Exclusive Resources</h2>
             <p class="mb-4">Subscribe to receive premium content not available in the public library</p>
             <form class="newsletter-form">
-                <div class="input-group mb-3 mx-auto" style="max-width: 500px;">
-                    <input type="email" class="form-control form-control-lg" placeholder="Your best email" required>
-                    <button class="btn btn-light btn-lg" type="submit">
+                <div class="input-group">
+                    <input type="email" class="form-control" placeholder="Your best email" required>
+                    <button class="btn btn-primary" type="submit">
                         <i class="fas fa-paper-plane me-2"></i> Subscribe
                     </button>
                 </div>
@@ -362,7 +613,7 @@
         <div class="modal-content">
             <div class="download-start">
                 <div class="mb-4">
-                    <i class="fas fa-cloud-download-alt fa-4x text-primary mb-3"></i>
+                    <i class="fas fa-cloud-download-alt fa-4x mb-3" style="color: var(--primary-color);"></i>
                     <h3 class="mb-2">Preparing Download</h3>
                     <p class="text-muted" id="filename">web-dev-starter-kit.zip</p>
                 </div>
@@ -373,7 +624,7 @@
             </div>
             <div class="download-complete">
                 <div class="mb-4">
-                    <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+                    <i class="fas fa-check-circle fa-4x mb-3" style="color: var(--accent-color);"></i>
                     <h3 class="mb-2">Download Complete!</h3>
                     <p class="text-muted">File saved to your Downloads folder</p>
                 </div>
@@ -412,7 +663,7 @@
                     countElement.innerHTML = `<i class="fas fa-download"></i> ${(currentCount + 1).toLocaleString()}+`;
 
                     // Here you would actually trigger the download
-                    // window.location.href = 'your-drive-link/' + filename;
+                    window.location.href = 'your-drive-link/' + filename;
                 }, 1500);
             });
         });
