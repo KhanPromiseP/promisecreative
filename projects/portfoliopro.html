@@ -1,212 +1,405 @@
-<!-- creative-agency.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Same head content as your main page -->
-    <title>Creative Agency Project | Your Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website Project | PromiseCreative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #eaeaea;
+            --accent-color: #ff6584;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #9d50bb;
+            --secondary-color: #6e48aa;
+            --dark-color: #f8f9fa;
+            --light-color: #1a1a2e;
+            --bg-color: #16213e;
+            --text-color: #f8f9fa;
+            --card-bg: #0f3460;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
         .project-detail {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 80px auto;
             padding: 0 20px;
         }
 
         .project-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+        .project-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
 
-        .project-gallery img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .project-header .subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: 500;
         }
 
         .project-description {
             max-width: 800px;
-            margin: 0 auto 40px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
             line-height: 1.8;
         }
 
-        .project-actions {
-            text-align: center;
-            margin: 50px 0;
+        .project-features {
+            margin: 60px auto;
+            max-width: 900px;
         }
 
-        .btn-demo {
-            background: #6e48aa;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            margin-right: 15px;
+        .feature-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
-        .btn-back {
-            background: #f8f9fa;
-            color: #333;
-            padding: 12px 30px;
-            border-radius: 50px;
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-item p {
+            margin-bottom: 0;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .project-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
 
         .project-actions {
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin: 4rem 0;
             justify-content: center;
             flex-wrap: wrap;
         }
 
         .project-actions a {
             text-decoration: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
             transition: all 0.3s ease;
             font-size: 1rem;
             text-align: center;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-demo {
-            background-color: #007bff;
+            background-color: var(--primary-color);
             color: #fff;
-            border: 2px solid #007bff;
+            border: 2px solid var(--primary-color);
         }
 
         .btn-demo:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(157, 80, 187, 0.4);
         }
 
         .btn-back {
             background-color: transparent;
-            color: #333;
-            border: 2px solid #333;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
         }
 
         .btn-back:hover {
-            background-color: #333;
+            background-color: var(--primary-color);
             color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.3);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-height: 90vh;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .navbar-brand {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .project-gallery img {
+                height: 200px;
+            }
+        }
+
+        /* Animation classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-dot {
+            color: var(--accent-color);
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
         }
     </style>
+    <!-- <link rel="stylesheet" href="../assets/css/style.css"> -->
+
 </head>
 
 <body>
+
+    <a class="navbar-brand" href="#">
+        <span class="logo-text">PromiseCreative</span>
+        <span class="logo-dot">.</span>
+    </a>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-toggle-btn">
+            <i class="bi" id="themeIcon"></i>
+        </button>
+    </div>
+
+
     <!-- Project Detail Content -->
     <div class="project-detail">
-        <div class="project-header">
-            <h1>A Portfolio Website</h1>
-            <p class="subtitle">Modern design with smooth animations</p>
+        <div class="project-header animate-fade-in">
+            <h1>Portfolio Website Project</h1>
+            <p class="subtitle">Modern design with smooth animations and optimal performance</p>
         </div>
 
-        <div class="project-description">
-            <p>This project involved creating a complete digital presence for a greater visibility. The design focuses on showcasing individual portfolio in an immersive way while maintaining excellent performance metrics.</p>
-            <p>Key features include custom micro-interactions, a case study showcase system, and a contact workflow that increased the rate of clients conversion by 40%.</p>
+        <div class="project-description animate-fade-in" style="animation-delay: 0.2s">
+            <p>This custom portfolio website was designed to showcase creative work in an immersive, visually stunning format. The project involved creating a complete digital presence that highlights the client's projects while maintaining excellent performance metrics across all devices.</p>
+
+            <p>The design system combines elegant typography with subtle animations to create a premium user experience. Key technical achievements include a perfect Lighthouse score, seamless responsive behavior, and optimized asset delivery for fast loading worldwide.</p>
         </div>
 
+        <div class="project-features">
+            <div class="row">
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.3s">
+                    <h3><i class="bi bi-lightning-charge"></i> Performance Optimized</h3>
+                    <p>Achieved 100/100 Lighthouse scores through code splitting, optimized images, and efficient CSS/JS delivery. The site loads in under 1s on most connections.</p>
+                </div>
 
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.4s">
+                    <h3><i class="bi bi-phone"></i> Responsive Design</h3>
+                    <p>Fully responsive layout that adapts perfectly to all screen sizes from 4K displays to mobile devices, with touch-optimized interactions.</p>
+                </div>
 
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.5s">
+                    <h3><i class="bi bi-magic"></i> Micro-Interactions</h3>
+                    <p>Subtle animations and hover effects enhance user engagement without compromising performance or accessibility.</p>
+                </div>
 
-        <style>
-            /* Gallery Container */
-            .project-gallery {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 20px;
-                padding: 20px;
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            /* Gallery Items */
-            .project-gallery img {
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-
-            .project-gallery img:hover {
-                transform: scale(1.02);
-                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            }
-
-            /* Lightbox Styles */
-            .lightbox {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.9);
-                z-index: 1000;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .project-actions a {
-                border-radius: 12px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-
-
-            .lightbox.active {
-                display: flex;
-            }
-
-            .lightbox-content {
-                position: relative;
-                max-width: 90%;
-                max-height: 90%;
-            }
-
-            .lightbox-content img {
-                max-height: 90vh;
-                max-width: 100%;
-                border-radius: 4px;
-            }
-
-            .close-btn {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                color: white;
-                font-size: 30px;
-                cursor: pointer;
-            }
-
-            @media (max-width: 768px) {
-                .project-gallery {
-                    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                }
-
-                .project-gallery img {
-                    height: 150px;
-                }
-            }
-        </style>
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.6s">
+                    <h3><i class="bi bi-search"></i> SEO Ready</h3>
+                    <p>Built with semantic HTML, structured data, and optimized metadata to ensure maximum visibility in search results.</p>
+                </div>
+            </div>
+        </div>
 
         <div class="project-gallery">
-            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-13-41.png" alt="Screenshot 1">
-            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-13-59.png" alt="Screenshot 2">
-            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-14-12.png" alt="Screenshot 3">
-            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-14-28.png" alt="Screenshot 4">
-            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-18-24.png" alt="Screenshot 5">
-            <img src="../assets/images/portfolioimages/goran-ivos-G_BCcijtpUY-unsplash.jpg" alt="Photography">
-            <img src="../assets/images/portfolioimages/pexels-luis-gomes-166706-546819.jpg" alt="Photography">
-            <img src="../assets/images/portfolioimages/cover.png" alt="Cover image">
+            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-13-41.png" alt="Portfolio Homepage" class="animate-fade-in" style="animation-delay: 0.3s">
+            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-13-59.png" alt="Portfolio Projects Section" class="animate-fade-in" style="animation-delay: 0.4s">
+            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-14-12.png" alt="Project Detail Page" class="animate-fade-in" style="animation-delay: 0.5s">
+            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-14-28.png" alt="Mobile Responsive View" class="animate-fade-in" style="animation-delay: 0.6s">
+            <img src="../assets/images/portfolioimages/Screenshot from 2025-03-28 11-18-24.png" alt="Contact Section" class="animate-fade-in" style="animation-delay: 0.3s">
+            <img src="../assets/images/portfolioimages/goran-ivos-G_BCcijtpUY-unsplash.jpg" alt="Design Process" class="animate-fade-in" style="animation-delay: 0.4s">
+            <img src="../assets/images/portfolioimages/pexels-luis-gomes-166706-546819.jpg" alt="Development Workflow" class="animate-fade-in" style="animation-delay: 0.5s">
+            <img src="../assets/images/portfolioimages/cover.png" alt="Final Product Showcase" class="animate-fade-in" style="animation-delay: 0.6s">
+        </div>
+
+        <!-- Project Specifications -->
+        <div class="project-description animate-fade-in" style="animation-delay: 0.7s">
+            <h3 class="text-center mb-4">Technical Specifications</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+)</li>
+                        <li class="mb-3"><strong>Frameworks:</strong> Bootstrap 5, Animate.css</li>
+                        <li class="mb-3"><strong>Performance:</strong> 100/100 Lighthouse score</li>
+                        <li class="mb-3"><strong>Responsive:</strong> Mobile-first approach</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><strong>Animations:</strong> CSS transitions and keyframes</li>
+                        <li class="mb-3"><strong>Optimizations:</strong> Image compression, lazy loading</li>
+                        <li class="mb-3"><strong>Accessibility:</strong> WCAG 2.1 AA compliant</li>
+                        <li class="mb-3"><strong>Browser Support:</strong> Chrome, Firefox, Safari, Edge</li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
         <!-- Lightbox HTML -->
@@ -217,52 +410,109 @@
             </div>
         </div>
 
-        <script>
-            // Lightbox functionality
-            const galleryImages = document.querySelectorAll('.project-gallery img');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = document.getElementById('close-btn');
-
-            galleryImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    lightbox.classList.add('active');
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt;
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
-                });
-            });
-
-            closeBtn.addEventListener('click', () => {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-
-            // Close with ESC key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-                    lightbox.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        </script>
-
-
-
-
-
-        <div class=" project-actions">
-            <a href="https://portfolio-pro-template.vercel.app" class="btn-demo" target="_blank">View Live Demo</a>
-            <a href="../index.html#portfolio" class="btn-back">Back to Projects</a>
+        <div class="project-actions animate-fade-in" style="animation-delay: 0.8s">
+            <a href="https://portfolio-pro-template.vercel.app" class="btn-demo" target="_blank">
+                <i class="bi bi-eye"></i> View Live Demo
+            </a>
+            <a href="../index.html#portfolio" class="btn-back">
+                <i class="bi bi-arrow-left"></i> Back to Projects
+            </a>
         </div>
     </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Set initial theme
+        let currentTheme = localStorage.getItem('theme') ||
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        setTheme(currentTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+            themeIcon.style.color = theme === 'dark' ? '#ffd700' : '#6e48aa';
+        }
+
+        // Lightbox functionality
+        const galleryImages = document.querySelectorAll('.project-gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animation states
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Run once on load
+        animateOnScroll();
+
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+
+
 </body>
 
 </html>
