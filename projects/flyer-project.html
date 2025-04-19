@@ -4,138 +4,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Flyer Design | Your Portfolio</title>
+    <title>Flyer Design Project | PromiseCreative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #eaeaea;
+            --accent-color: #ff6584;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #9d50bb;
+            --secondary-color: #6e48aa;
+            --dark-color: #f8f9fa;
+            --light-color: #1a1a2e;
+            --bg-color: #16213e;
+            --text-color: #f8f9fa;
+            --card-bg: #0f3460;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
         .project-detail {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 80px auto;
             padding: 0 20px;
         }
 
         .project-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
-        .flyer-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+        .project-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
 
-        .flyer-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
+        .project-header .subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .project-description {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .project-features {
+            margin: 60px auto;
+            max-width: 900px;
+        }
+
+        .feature-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            background: var(--card-bg);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
         }
 
-        .flyer-item img {
-            width: 100%;
-            height: auto;
-            display: block;
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .flyer-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 15px;
-            text-align: center;
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
 
-        .design-specs {
-            display: flex;
-            flex-wrap: wrap;
+        .feature-item p {
+            margin-bottom: 0;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
-            margin: 40px 0;
+            margin: 60px 0;
         }
 
-        .spec-card {
-            flex: 1;
-            min-width: 250px;
-            background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
+        .project-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .project-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .project-actions {
+            display: flex;
+            gap: 1.5rem;
+            margin: 4rem 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .project-actions a {
+            text-decoration: none;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1rem;
             text-align: center;
-            margin: 50px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-demo {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-demo:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(157, 80, 187, 0.4);
         }
 
         .btn-back {
-            background: #6e48aa;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+            background-color: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
         }
 
         .btn-back:hover {
-            transform: translateY(-3px);
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(110, 72, 170, 0.3);
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-height: 90vh;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .navbar-brand {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .project-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .project-gallery img {
+                height: 200px;
+            }
+        }
+
+        /* Animation classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-dot {
+            color: var(--accent-color);
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
         }
     </style>
 </head>
 
 <body>
+
+    <a class="navbar-brand" href="#">
+        <span class="logo-text">PromiseCreative</span>
+        <span class="logo-dot">.</span>
+    </a>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-toggle-btn">
+            <i class="bi" id="themeIcon"></i>
+        </button>
+    </div>
+
+
+    <!-- Project Detail Content -->
     <div class="project-detail">
-        <div class="project-header">
-            <h1>Music Festival Promotional Flyers</h1>
-            <p class="subtitle">Vibrant series of event marketing materials</p>
+        <div class="project-header animate-fade-in">
+            <h1>Flyer Design Project</h1>
+            <p class="subtitle">Eye-catching designs with strategic messaging and visual impact</p>
         </div>
 
-        <div class="project-description">
-            <p>Designed a cohesive set of promotional flyers for a 3-day music festival, creating visual consistency while giving each day's lineup its own distinctive character.</p>
+        <div class="project-description animate-fade-in" style="animation-delay: 0.2s">
+            <p>We craft professional flyer design that delivers maximum visual impact and communication effectiveness. The designs combine striking visuals with clear messaging to capture attention and convey information efficiently across both print and digital formats.</p>
+
+            <p>Our designs balances aesthetic appeal, using color psychology, typographic hierarchy, and strategic layout to guide the viewer's eye.</p>
+            <p>Our designs speaks for you!</p>
         </div>
 
-        <div class="flyer-gallery">
-            <div class="flyer-item">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Day 1 Flyer">
-                <div class="flyer-caption">Day 1 - Electronic Night</div>
-            </div>
-            <div class="flyer-item">
-                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Day 2 Flyer">
-                <div class="flyer-caption">Day 2 - Rock & Indie</div>
-            </div>
-            <div class="flyer-item">
-                <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Day 3 Flyer">
-                <div class="flyer-caption">Day 3 - Hip Hop & R&B</div>
-            </div>
-        </div>
+        <div class="project-features">
+            <div class="row">
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.3s">
+                    <h3><i class="bi bi-eye"></i> Visual Impact</h3>
+                    <p>Designed to immediately grab attention with bold colors, striking imagery, and clean layouts that stand out in any environment.</p>
+                </div>
 
-        <div class="design-specs">
-            <div class="spec-card">
-                <h3>Typography</h3>
-                <p><strong>Primary Font:</strong> Bebas Neue</p>
-                <p><strong>Secondary Font:</strong> Montserrat</p>
-                <p><strong>Special:</strong> Custom graffiti elements</p>
-            </div>
-            <div class="spec-card">
-                <h3>Color Scheme</h3>
-                <p><strong>Vibrant:</strong> Neon gradients</p>
-                <p><strong>Contrast:</strong> High-impact combinations</p>
-                <p><strong>UV:</strong> Special inks for night visibility</p>
-            </div>
-            <div class="spec-card">
-                <h3>Print Specs</h3>
-                <p><strong>Size:</strong> A5 (148 × 210mm)</p>
-                <p><strong>Paper:</strong> 300gsm Silk</p>
-                <p><strong>Finish:</strong> Spot UV coating</p>
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.4s">
+                    <h3><i class="bi bi-layers"></i> Multi-Format Ready</h3>
+                    <p>Optimized designs that work equally well for both print and digital distribution, with proper bleeds and resolution for each format.</p>
+                </div>
+
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.5s">
+                    <h3><i class="bi bi-bullseye"></i> Targeted Messaging</h3>
+                    <p>Strategic content hierarchy ensures key messages are communicated quickly and effectively to the target audience.</p>
+                </div>
+
+                <div class="col-md-6 feature-item animate-fade-in" style="animation-delay: 0.6s">
+                    <h3><i class="bi bi-palette"></i> Brand Consistent</h3>
+                    <p>Custom designs that perfectly align with your brand identity while adapting to specific campaign needs.</p>
+                </div>
             </div>
         </div>
 
-        <div class="project-actions">
-            <a href="../index.html#portfolio" class="btn-back">Back to Projects</a>
+        <div class="project-gallery">
+            <img src="../assets/images/flyerimages/20240707_133331-picsay.jpg" alt="Event Flyer Design" class="animate-fade-in" style="animation-delay: 0.3s">
+            <img src="../assets/images/flyerimages/20240709_112627-picsay.jpg" alt="Promotional Flyer" class="animate-fade-in" style="animation-delay: 0.4s">
+            <img src="../assets/images/flyerimages/20241129_174953-picsay.jpg" alt="Business Flyer" class="animate-fade-in" style="animation-delay: 0.5s">
+            <img src="../assets/images/flyerimages/20250403_174432.jpg" alt="Digital Flyer" class="animate-fade-in" style="animation-delay: 0.6s">
+            <img src="../assets/images/flyerimages/20250410_121811.jpg" alt="Product Flyer" class="animate-fade-in" style="animation-delay: 0.3s">
+            <img src="../assets/images/flyerimages/20250410_123941.png" alt="Brochure Design" class="animate-fade-in" style="animation-delay: 0.4s">
+            <img src="../assets/images/flyerimages/20250410_125132.jpg" alt="Social Media Flyer" class="animate-fade-in" style="animation-delay: 0.5s">
+            <img src="../assets/images/flyerimages/20250415_213522.jpg" alt="Print Ready Flyer" class="animate-fade-in" style="animation-delay: 0.6s">
+        </div>
+
+        <!-- Project Specifications -->
+        <div class="project-description animate-fade-in" style="animation-delay: 0.7s">
+            <h3 class="text-center mb-4">Design Specifications</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><strong>Design Software:</strong> Adobe Photoshop, Illustrator, PixelLab</li>
+                        <li class="mb-3"><strong>Supported Print Sizes:</strong> A4, A5, DL, Square, and Custom Dimensions</li>
+                        <li class="mb-3"><strong>Color Profile:</strong> CMYK (for print) and RGB (for digital display)</li>
+                        <li class="mb-3"><strong>Design Resolution:</strong> 300 DPI (print-quality) / 72 DPI (web-quality)</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li class="mb-3"><strong>Deliverable Formats:</strong> PDF, JPG, PNG, PSD, and more upon request</li>
+                        <li class="mb-3"><strong>Print Bleed Specification:</strong> 3mm standard bleed area for professional printing</li>
+                        <li class="mb-3"><strong>Typography Standards:</strong> High-quality licensed fonts for clean, consistent branding</li>
+                        <li class="mb-3"><strong>Revision Policy:</strong> Up to 3 rounds of revisions included at no extra cost</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Lightbox HTML -->
+        <div class="lightbox" id="lightbox">
+            <span class="close-btn" id="close-btn">&times;</span>
+            <div class="lightbox-content">
+                <img id="lightbox-img" src="" alt="">
+            </div>
+        </div>
+
+        <div class="project-actions animate-fade-in" style="animation-delay: 0.8s">
+            <a href="../index.html#portfolio" class="btn-back">
+                <i class="bi bi-arrow-left"></i> Back to Projects
+            </a>
+            <a href="../index.html#contact" class="btn-demo" target="_blank">
+                <i class="bi bi-phone"></i> Contact Us
+            </a>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Set initial theme
+        let currentTheme = localStorage.getItem('theme') ||
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        setTheme(currentTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+            themeIcon.style.color = theme === 'dark' ? '#ffd700' : '#6e48aa';
+        }
+
+        // Lightbox functionality
+        const galleryImages = document.querySelectorAll('.project-gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.getElementById('close-btn');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animation states
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Run once on load
+        animateOnScroll();
+
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
 </body>
 
 </html>
