@@ -1038,12 +1038,59 @@
 
                 <div class="col-lg-4">
                     <div class="">
-                        <h5>Newsletter</h5>
-                        <p>Subscribe to get updates and design tips.</p>
-                        <form class=" newsletter-form">
-                            <input type="email" placeholder="Your Email">
-                            <button type="submit"><i class=" bi bi-send"></i></button>
-                        </form>
+
+                        <!-- Newsletter Form -->
+                        <div>
+                            <h5>Newsletter</h5>
+                            <p>Subscribe to get updates and design tips.</p>
+
+                            <form class=" newsletter-form" id="newsletterForm">
+                                <input type="email" id="emailInput" placeholder="Your Email" required>
+                                <button type="submit"><i class="bi bi-send"></i></button>
+                            </form>
+
+                            <!-- Success Message -->
+                            <div id="successMsg" style="display:none; margin-top:10px; color:green; font-weight:bold;">
+                                🎉 You’ve successfully joined the Promise Creative newsletter!
+                            </div>
+
+
+                        </div>
+
+                        <script>
+                            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                const email = document.getElementById('emailInput').value.trim();
+                                const timestamp = new Date().toLocaleString();
+                                const successMsg = document.getElementById('successMsg');
+
+                                if (!email || !email.includes('@')) {
+                                    alert("Please enter a valid email.");
+                                    return;
+                                }
+
+                                let saved = JSON.parse(localStorage.getItem('subscribers')) || [];
+                                saved.push({
+                                    email: email,
+                                    time: timestamp
+                                });
+                                localStorage.setItem('subscribers', JSON.stringify(saved));
+
+                                document.getElementById('newsletterForm').reset();
+                                successMsg.style.display = 'block';
+
+                                successMsg.style.display = 'block';
+                                setTimeout(() => {
+                                    successMsg.style.display = 'none';
+                                }, 4000); // hides after 4 seconds
+
+
+                            });
+                        </script>
+
+
+
+
                     </div>
                 </div>
             </div>
