@@ -17,10 +17,17 @@
             </a>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 flex flex-wrap gap-2">
             <button onclick="copyAll()" class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 transition text-sm">
                 📋 Copy All Emails
             </button>
+            <button onclick="exportSubscribers()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition text-sm">
+                💾 Export Subscribers
+            </button>
+            <label for="importFile" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition text-sm cursor-pointer">
+                📥 Import Subscribers
+                <input type="file" id="importFile" accept=".json" class="hidden" onchange="importSubscribers(event)">
+            </label>
         </div>
 
         <div id="emailsContainer" class="space-y-3">
@@ -28,12 +35,15 @@
         </div>
 
         <div id="emptyMsg" class="text-gray-500 text-sm text-center mt-4 hidden">No subscribers found.</div>
+        <div id="statusMsg" class="text-sm text-center mt-4 hidden"></div>
     </div>
 
     <script>
         const container = document.getElementById('emailsContainer');
         const emptyMsg = document.getElementById('emptyMsg');
+        const statusMsg = document.getElementById('statusMsg');
 
+        // Load emails from localStorage
         function loadEmails() {
             container.innerHTML = '';
             let subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
@@ -61,7 +71,7 @@
                 copyBtn.textContent = "Copy";
                 copyBtn.onclick = () => {
                     navigator.clipboard.writeText(sub.email);
-                    alert("Email copied: " + sub.email);
+                    showStatus("Email copied: " + sub.email, 'text-green-600');
                 };
 
                 const deleteBtn = document.createElement('button');
@@ -71,6 +81,7 @@
                     subscribers.splice(index, 1);
                     localStorage.setItem('subscribers', JSON.stringify(subscribers));
                     loadEmails();
+                    showStatus("Subscriber deleted", 'text-green-600');
                 };
 
                 controls.appendChild(copyBtn);
@@ -81,13 +92,86 @@
             });
         }
 
+        // Copy all emails to clipboard
         function copyAll() {
             const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
             const allEmails = subscribers.map(sub => sub.email).join(', ');
             navigator.clipboard.writeText(allEmails);
-            alert("All emails copied to clipboard!");
+            showStatus("All emails copied to clipboard!", 'text-green-600');
         }
 
+        // Export subscribers to JSON file
+        function exportSubscribers() {
+            const subscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
+            if (subscribers.length === 0) {
+                showStatus("No subscribers to export", 'text-red-500');
+                return;
+            }
+
+            const dataStr = JSON.stringify(subscribers, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+
+            const exportName = `subscribers_${new Date().toISOString().slice(0,10)}.json`;
+
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportName);
+            linkElement.click();
+
+            showStatus("Subscribers exported successfully", 'text-green-600');
+        }
+
+        // Import subscribers from JSON file
+        function importSubscribers(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    if (!Array.isArray(importedData)) {
+                        throw new Error("Invalid file format");
+                    }
+
+                    // Merge with existing subscribers, avoiding duplicates
+                    const currentSubscribers = JSON.parse(localStorage.getItem('subscribers')) || [];
+                    const emailSet = new Set(currentSubscribers.map(sub => sub.email));
+
+                    let addedCount = 0;
+                    importedData.forEach(sub => {
+                        if (!emailSet.has(sub.email)) {
+                            currentSubscribers.push(sub);
+                            emailSet.add(sub.email);
+                            addedCount++;
+                        }
+                    });
+
+                    localStorage.setItem('subscribers', JSON.stringify(currentSubscribers));
+                    loadEmails();
+                    showStatus(`Imported successfully. ${addedCount} new subscribers added.`, 'text-green-600');
+                } catch (error) {
+                    showStatus("Error importing: " + error.message, 'text-red-500');
+                }
+
+                // Reset input to allow re-importing the same file
+                event.target.value = '';
+            };
+            reader.readAsText(file);
+        }
+
+        // Show status message
+        function showStatus(message, colorClass) {
+            statusMsg.textContent = message;
+            statusMsg.className = `text-sm text-center mt-4 ${colorClass}`;
+            statusMsg.classList.remove('hidden');
+
+            setTimeout(() => {
+                statusMsg.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize
         loadEmails();
     </script>
 
