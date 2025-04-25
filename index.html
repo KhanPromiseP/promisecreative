@@ -419,11 +419,11 @@
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="web">Web Design</button>
                 <button class="filter-btn" data-filter="graphic">Graphic Design</button>
-                <!-- <button class="filter-btn" data-filter="Optimization">Optimization</button> -->
             </div>
 
             <div class="row portfolio-grid">
-                <div class="col-lg-4 col-md-6 portfolio-item" data-category="web">
+                <!-- First 3 projects will be visible by default -->
+                <div class="col-lg-4 col-md-6 portfolio-item visible" data-category="web">
                     <div class="portfolio-card">
                         <div class="portfolio-image">
                             <img src="assets/images/portfolioimages/cover.png" alt="Web Design Project">
@@ -436,48 +436,20 @@
                     </div>
                 </div>
 
-                <!-- <div class="col-lg-4 col-md-6 portfolio-item" data-category="graphic">
+                <div class="col-lg-4 col-md-6 portfolio-item visible" data-category="web">
                     <div class="portfolio-card">
                         <div class="portfolio-image">
-                            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1558&q=80" alt="Graphic Design Project">
+                            <img src="assets/images/proweldimages/1.png" alt="Web Design Project">
                         </div>
                         <div class="portfolio-overlay">
-                            <h3>Coffee Brand Packaging</h3>
-                            <p>Eco-friendly packaging design</p>
-                            <a href="projects/coffee-brand.html" class="portfolio-link">View Project</a>
+                            <h3>Crafted Welding Website</h3>
+                            <p>Modern design website for a Welding Company</p>
+                            <a href="projects/proweld.html" class="portfolio-link">View Project</a>
                         </div>
                     </div>
-                </div> -->
+                </div>
 
-
-
-                <!-- <div class="col-lg-4 col-md-6 portfolio-item" data-category="web">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80" alt="Web Design Project">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Small businesses Platform</h3>
-                            <p>High-converting online businesses sites</p>
-                            <a href="projects/smallbusiness-project.html" class="portfolio-link">View Project</a>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- <div class="col-lg-4 col-md-6 portfolio-item" data-category="graphic">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="https://images.unsplash.com/photo-1601933470096-0e34634ffcde?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Graphic Design Project">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Stonny Logos & Posters</h3>
-                            <p>Logos For Businesses and personal brand</p>
-                            <a href="projects/logo-project.html" class="portfolio-link">View Project</a>
-                        </div>
-                    </div>
-                </div> -->
-
-                <div class="col-lg-4 col-md-6 portfolio-item" data-category="graphic">
+                <div class="col-lg-4 col-md-6 portfolio-item visible" data-category="graphic">
                     <div class="portfolio-card">
                         <div class="portfolio-image">
                             <img src="assets/images/flyerimages/20250410_121811.jpg" alt="Graphic Design Project">
@@ -490,8 +462,8 @@
                     </div>
                 </div>
 
-
-                <div class="col-lg-4 col-md-6 portfolio-item" data-category="web">
+                <!-- Additional projects (hidden by default) -->
+                <div class="col-lg-4 col-md-6 portfolio-item hidden" data-category="web">
                     <div class="portfolio-card">
                         <div class="portfolio-image">
                             <img src="assets/images/restaurantimages/cover.png" alt="Web Design Project">
@@ -503,14 +475,72 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- <div class="text-center mt-5">
-                <a href="#" class="btn btn-primary btn-glow">View All Projects</a>
-            </div> -->
+            <div class="text-center mt-5">
+                <a href="#" id="viewAllBtn" class="btn btn-primary btn-glow">View All Projects</a>
+            </div>
         </div>
     </section>
+
+    <style>
+        /* Add this CSS to handle the visibility of projects */
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-item.visible {
+            display: block;
+        }
+
+        /* This ensures the grid layout works properly when items are shown/hidden */
+        .portfolio-grid {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewAllBtn = document.getElementById('viewAllBtn');
+            const hiddenProjects = document.querySelectorAll('.portfolio-item.hidden');
+
+            viewAllBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                // Toggle all hidden projects
+                hiddenProjects.forEach(project => {
+                    project.classList.remove('hidden');
+                    project.classList.add('visible');
+                });
+
+                // Hide the button after clicking
+                viewAllBtn.style.display = 'none';
+            });
+
+            // Filter functionality remains the same but needs to account for hidden/visible classes
+            const filterButtons = document.querySelectorAll('.filter-btn');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+                    const allProjects = document.querySelectorAll('.portfolio-item');
+
+                    allProjects.forEach(project => {
+                        if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
+                            project.style.display = 'block';
+                        } else {
+                            project.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 
     <!-- Process Section -->
     <section id="process" class="process-section" style="margin-top: 100px; margin-bottom: 100px;">
