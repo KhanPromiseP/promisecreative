@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills | PromiseCreative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #eaeaea;
+            --accent-color: #ff6584;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #9d50bb;
+            --secondary-color: #6e48aa;
+            --dark-color: #f8f9fa;
+            --light-color: #1a1a2e;
+            --bg-color: #16213e;
+            --text-color: #f8f9fa;
+            --card-bg: #0f3460;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .skills-detail {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .skills-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .skills-header .subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .skills-description {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .skills-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--text-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.3);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-category {
+            margin-bottom: 25px;
+        }
+
+        .skill-category-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(110, 72, 170, 0.1);
+        }
+
+        .skill-category-icon {
+            margin-right: 15px;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(110, 72, 170, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .skill-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-item {
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(110, 72, 170, 0.1);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .skill-name {
+            flex-grow: 1;
+        }
+
+        .skill-level {
+            font-size: 0.8rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(110, 72, 170, 0.1);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .skill-level.expert {
+            background: rgba(46, 125, 50, 0.1);
+            color: #2e7d32;
+        }
+
+        .skill-level.advanced {
+            background: rgba(0, 105, 92, 0.1);
+            color: #00695c;
+        }
+
+        .skill-level.intermediate {
+            background: rgba(245, 124, 0, 0.1);
+            color: #f57c00;
+        }
+
+        .skill-level.learning {
+            background: rgba(198, 40, 40, 0.1);
+            color: #c62828;
+            font-style: italic;
+        }
+
+        .learning-section {
+            background: linear-gradient(135deg, rgba(110, 72, 170, 0.05), rgba(157, 80, 187, 0.05));
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 30px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .learning-title {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .learning-title i {
+            margin-right: 10px;
+        }
+
+        .passion-statement {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 101, 132, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .passion-statement i {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(110, 72, 170, 0.4);
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover i {
+            transform: translateX(-3px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .skills-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .skill-card {
+                padding: 20px;
+            }
+        }
+
+        /* Learning Journey Section */
+.learning-journey-section {
+  background: linear-gradient(135deg, rgba(110, 72, 170, 0.03), rgba(157, 80, 187, 0.03));
+  padding: 80px 0;
+  margin-top: 60px;
+  border-top: 1px solid rgba(110, 72, 170, 0.1);
+}
+
+.journey-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.journey-header h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.journey-header h2 i {
+  font-size: 2.2rem;
+}
+
+.journey-subtitle {
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.journey-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.journey-text {
+  padding: 20px;
+}
+
+.journey-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 25px;
+}
+
+.journey-highlights {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 30px;
+}
+
+.journey-highlights li {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 1.05rem;
+}
+
+.journey-highlights i {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-top: 3px;
+}
+
+.learning-philosophy {
+  background: rgba(110, 72, 170, 0.05);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.learning-philosophy h4 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.learning-philosophy p {
+  margin-bottom: 15px;
+}
+
+/* Learning Path Visualization */
+.learning-path {
+  position: relative;
+  padding: 30px;
+  background: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  height: 100%;
+}
+
+.path-item {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.path-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+}
+
+.path-icon.completed {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.path-icon.current {
+  background: var(--accent-color);
+  color: white;
+  border-color: var(--accent-color);
+  animation: pulse 2s infinite;
+}
+
+.path-content h5 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: var(--text-color);
+}
+
+.path-content p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.path-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 24px;
+  top: 50px;
+  width: 2px;
+  height: calc(100% + 10px);
+  background: var(--border-color);
+  z-index: -1;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 101, 132, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 101, 132, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 101, 132, 0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .journey-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .journey-visual {
+    order: -1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .journey-header h2 {
+    font-size: 2rem;
+  }
+  
+  .path-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .path-item:not(:last-child)::after {
+    left: 24px;
+    top: 50px;
+    height: calc(100% + 20px);
+  }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="logo-text">PromiseCreative</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="navbar-close-btn">×</button>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./skills.html">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+         <div class="theme-toggle">
+        <button id="themeToggle" class="theme-toggle-btn">
+            <i class="bi" id="themeIcon"></i>
+        </button>
+    </div>
+    </nav>
+
+    <!-- Skills Content -->
+    <div class="skills-detail">
+        <div class="skills-header animate-fade-in">
+            <h1>My Skills & Expertise</h1>
+            <p class="subtitle">A comprehensive showcase of my technical abilities and professional qualities</p>
+        </div>
+
+        <div class="skills-description animate-fade-in" style="animation-delay: 0.2s">
+            <p>Below you'll find a detailed breakdown of my technical skills, professional competencies, and areas I'm currently exploring. I'm passionate about continuous learning and applying new technologies to solve real-world problems.</p>
+        </div>
+
+       <div class="passion-statement animate-fade-in mb-8" style="animation-delay: 0.3s">
+    <i class="bi bi-lightbulb-fill"></i>
+    <strong>My Learning Ethos:</strong> "The fastest way to understand the future is to build it. I'm relentlessly immersed in web technologies, AI/ML, rapidly translating theory into tangible solutions, constantly evolving to master the next frontier of innovation."
+</div>
+
+     
+
+        <div class="skills-grid animate-fade-in" style="animation-delay: 0.5s">
+            <!-- Technical Skills Card -->
+           <!-- Frontend Technologies Card -->
+<div class="skill-card" data-category="technical">
+  <div class="skill-category">
+    <h3 class="skill-category-title">
+      <span class="skill-category-icon"><i class="bi bi-code-slash"></i></span>
+      Frontend Development
+    </h3>
+    <ul class="skill-list">
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-react"></i></span>
+        <span class="skill-name">React (Hooks, Context, Redux, Router)</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-js"></i></span>
+        <span class="skill-name">JavaScript (ES6+), TypeScript</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-html5"></i></span>
+        <span class="skill-name">HTML5 & Semantic Markup</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-css3-alt"></i></span>
+        <span class="skill-name">CSS3, Sass, Tailwind, Bootstrap</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-phone"></i></span>
+        <span class="skill-name">Responsive & Adaptive Design</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+    
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-lightning"></i></span>
+        <span class="skill-name">State Management (Redux, Context API)</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="skill-footer">
+    <i class="bi bi-stars"></i>
+    <span>Specialized in building interactive, performant UIs with React ecosystem</span>
+  </div>
+</div>
+
+<!-- Backend Technologies Card -->
+<div class="skill-card" data-category="technical">
+  <div class="skill-category">
+    <h3 class="skill-category-title">
+      <span class="skill-category-icon"><i class="bi bi-server"></i></span>
+      Backend Development
+    </h3>
+    <ul class="skill-list">
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-node-js"></i></span>
+        <span class="skill-name">Node.js, Express, NestJS</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-php"></i></span>
+        <span class="skill-name">PHP (Laravel)</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-plug"></i></span>
+        <span class="skill-name">RESTful API Design</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-shield-lock"></i></span>
+        <span class="skill-name">Authentication (JWT, OAuth, Passport)</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-speedometer2"></i></span>
+        <span class="skill-name">Performance Optimization</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-cpu"></i></span>
+        <span class="skill-name">Microservices Architecture</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-database"></i></span>
+        <span class="skill-name">ORM (Eloquent, Mongoose)</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="skill-footer">
+    <i class="bi bi-stars"></i>
+    <span>Specialized in building scalable backend systems with Node.js and Laravel</span>
+  </div>
+</div>
+
+            <!-- Second Technical Skills Card -->
+            <div class="skill-card" data-category="technical">
+                <div class="skill-category">
+                    <h3 class="skill-category-title">
+                        <span class="skill-category-icon"><i class="bi bi-database"></i></span>
+                        Databases & Storage
+                    </h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="fas fa-leaf"></i></span>
+                            <span class="skill-name">MongoDB & Mongoose</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="bi bi-table"></i></span>
+                            <span class="skill-name">PostgreSQL</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="bi bi-fire"></i></span>
+                            <span class="skill-name">MYSQL</span>
+                            <span class="skill-level advanced">Advanced</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3 class="skill-category-title">
+                        <span class="skill-category-icon"><i class="bi bi-robot"></i></span>
+                        AI/ML & Data
+                    </h3>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="bi bi-cpu"></i></span>
+                            <span class="skill-name">AI API Integration</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="fab fa-google"></i></span>
+                            <span class="skill-name">Google Gemini API</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="bi bi-diagram-3"></i></span>
+                            <span class="skill-name">RAG Architectures</span>
+                            <span class="skill-level beginner">Beginner</span>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-icon"><i class="bi bi-graph-up"></i></span>
+                            <span class="skill-name">Data Analysis (Pandas, NumPy)</span>
+                            <span class="skill-level beginner">Beginner</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Third Technical Skills Card -->
+           <!-- Development Tools Card -->
+<div class="skill-card" data-category="technical">
+  <div class="skill-category">
+    <h3 class="skill-category-title">
+      <span class="skill-category-icon"><i class="bi bi-terminal"></i></span>
+      Development Tools
+    </h3>
+    <ul class="skill-list">
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-git-alt"></i></span>
+        <span class="skill-name">Git, GitHub</span>
+        <span class="skill-level expert">Expert</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-docker"></i></span>
+        <span class="skill-name">Docker & Docker Compose</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-code-square"></i></span>
+        <span class="skill-name">VS Code & JetBrains IDEs</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-terminal-fill"></i></span>
+        <span class="skill-name">OS (Linux[Kali, Ubuntu], Windows)</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-cloud-arrow-up"></i></span>
+        <span class="skill-name">Vercel, Netlify</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="fab fa-aws"></i></span>
+        <span class="skill-name">Render, Railway, AWS</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-diagram-3"></i></span>
+        <span class="skill-name">Postman, Insomnia, Swagger</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-shield-lock"></i></span>
+        <span class="skill-name">Burp Suite, OWASP ZAP</span>
+        <span class="skill-level beginner">Beginner</span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="skill-footer">
+    <i class="bi bi-tools"></i>
+    <span>Optimized development workflow with customized tooling configurations</span>
+  </div>
+</div>
+
+<!-- Design & Creative Tools Card -->
+<div class="skill-card" data-category="technical">
+  <div class="skill-category">
+    <h3 class="skill-category-title">
+      <span class="skill-category-icon"><i class="bi bi-palette2"></i></span>
+      Design & Creative Tools
+    </h3>
+    <ul class="skill-list">
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-phone"></i></span>
+        <span class="skill-name">Pixel Lab (Mobile Design)</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-image"></i></span>
+        <span class="skill-name">Adobe Photoshop</span>
+        <span class="skill-level beginner">Beginner</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-camera"></i></span>
+        <span class="skill-name">Canva & Snapseed</span>
+        <span class="skill-level beginner">Beginner</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-film"></i></span>
+        <span class="skill-name">Video Editing (CapCut, Premiere Rush)</span>
+        <span class="skill-level beginner">Beginner</span>
+      </li>
+   
+    </ul>
+  </div>
+  
+  <div class="skill-footer">
+    <i class="bi bi-magic"></i>
+    <span>Specialized in creating mobile-first designs with Pixel Lab</span>
+  </div>
+</div>
+
+            <!-- Professional Skills Card -->
+        <!-- Professional Skills Card -->
+<!-- Professional Skills Card -->
+<div class="skill-card" data-category="professional">
+  <div class="skill-category">
+    <h3 class="skill-category-title">
+      <span class="skill-category-icon"><i class="bi bi-people"></i></span>
+      Professional Skills
+    </h3>
+    <ul class="skill-list">
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-lightbulb"></i></span>
+        <span class="skill-name">Problem Solving & Algorithms</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-robot"></i></span>
+        <span class="skill-name">AI Integration</span>
+        <span class="skill-level intermediate">Intermediate</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-kanban"></i></span>
+        <span class="skill-name">Technical Project Leadership</span>
+        <span class="skill-level advanced">Advanced</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-arrow-repeat"></i></span>
+        <span class="skill-name">Rapid Technology Adoption</span>
+        <span class="skill-level advanced">Advancd</span>
+      </li>
+       <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-chat-square-text"></i></span>
+        <span class="skill-name">Communication</span>
+        <span class="skill-level advanced">Advancd</span>
+      </li>
+       <li class="skill-item">
+        <span class="skill-icon"><i class="fad fa-palette"></i></span>
+        <span class="skill-name">Team Work</span>
+        <span class="skill-level advanced">Advancd</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-puzzle"></i></span>
+        <span class="skill-name">System Architecture</span>
+        <span class="skill-level intermediate">Developing</span>
+      </li>
+      <li class="skill-item">
+        <span class="skill-icon"><i class="bi bi-code-square"></i></span>
+        <span class="skill-name">Clean Code Principles</span>
+        <span class="skill-level intermediate">Developing</span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="skill-footer">
+    <i class="bi bi-award"></i>
+    <span>Recognized for implementing AI solutions that increased productivity by 40%</span>
+  </div>
+</div>
+
+<!-- Learning Journey Section -->
+
+        <div class="text-center mt-5 animate-fade-in" style="animation-delay: 0.6s; align-content: center;">
+            <a href="../index.html#contact" class="btn btn-primary">
+                <span>Let's Work Together</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <section class="learning-journey-section">
+  <div class="container">
+    <div class="journey-header">
+      <h2><i class="bi bi-rocket"></i> My Engineering Growth Path</h2>
+      <p class="journey-subtitle">Building tomorrow's solutions through continuous mastery</p>
+    </div>
+    
+    <div class="journey-content">
+      <div class="journey-text">
+        <p>The tech world is dynamic, and I thrive on its constant evolution. My passion lies in continuous learning across the full stack: meticulously deepening my backend expertise while mastering frontend development to craft seamless and intuitive user experiences. I also strategically integrate AI technologies, viewing them as powerful tools that amplify what a developer can achieve. This holistic and forward-looking approach ensures I'm always evolving, ready to build comprehensive, future-ready digital experiences.</p>
+        
+        <p>My current intensive learning areas:</p>
+        
+        <ul class="journey-highlights">
+          <li>
+            <i class="bi bi-server mb-3"></i>
+            <strong>Backend Mastery</strong>: Advanced Express.js patterns, Laravel architecture, and distributed systems
+          </li>
+          <li>
+            <i class="bi bi-cpu"></i>
+            <strong>AI Engineering</strong>: LLM integration, and AI-assisted development workflows
+          </li>
+          <li>
+            <i class="bi bi-graph-up"></i>
+            <strong>Performance Optimization</strong>: Algorithm efficiency, database tuning, and system scaling
+          </li>
+          <li>
+            <i class="bi bi-shield-lock"></i>
+            <strong>Security Practices</strong>: Secure API development and AI system hardening
+          </li>
+        </ul>
+        
+        
+      </div>
+      
+<div class="journey-visual">
+  <div class="learning-path">
+    <div class="path-item">
+      <div class="path-icon completed">
+        <i class="bi bi-check-circle"></i>
+      </div>
+      <div class="path-content">
+        <h5>Core Foundations</h5>
+        <p>HTML/CSS, JavaScript, PHP, Core Programming Concepts, Databases</p>
+      </div>
+    </div>
+    <div class="path-item">
+      <div class="path-icon completed">
+        <i class="bi bi-check-circle"></i>
+      </div>
+      <div class="path-content">
+        <h5>Core Web Development</h5>
+        <p>Express.js, Laravel, Authentication, API Design</p>
+      </div>
+    </div>
+    <div class="path-item current">
+      <div class="path-icon">
+        <i class="bi bi-activity"></i>
+      </div>
+      <div class="path-content">
+        <h5>Current Deep Dive</h5>
+        <p>Backend (Express.js, Laravel), Frontend (React.js, CSS Frameworks), AI Integration, Advanced Algorithms</p>
+      </div>
+    </div>
+    <div class="path-item future">
+      <div class="path-icon">
+        <i class="bi bi-braces"></i>
+      </div>
+      <div class="path-content">
+        <h5>Architectural Vision</h5>
+        <p>Distributed Systems, Cloud Computing, ML Engineering</p>
+      </div>
+    </div>
+    <div class="path-item future">
+      <div class="path-icon">
+        <i class="bi bi-lightbulb"></i>
+      </div>
+      <div class="path-content">
+        <h5>Tech Entrepreneurship</h5>
+        <p>Product Innovation, Business Strategy, Startup Ecosystem</p>
+      </div>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="learning-philosophy">
+          <h4><i class="bi bi-lightning"></i> My Build-to-Learn Methodology</h4>
+          <p>I don't just study technologies but instead, I try to engineer with them. This by macking sure that each new concept gets implemented in mini as well as production-grade projects, ensuring practical mastery. This approach has helped me To:</p>
+          <ul>
+            <li>Truly internalize and master technologies like React, Laravel.</li>
+            <li>Constantly refining my problem-solving abilities</li>
+            <li>Build real-world production grade projects</li>
+          </ul>
+        </div>
+    </div>
+         <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-about">
+                        <a class="footer-logo" href="#">
+                            <span class="logo-text">Promise</span>
+                            <span class="logo-dot">.</span>
+                        </a>
+                        <p>At PromiseCreative, We craft digital experiences that help individuals and businesses stand out online with custom websites and branding.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="./index.html#home">Home</a></li>
+                            <li><a href="./services.html">Services</a></li>
+                            <li><a href="./portfolio.html">Portfolio</a></li>
+                            <li><a href="./about.html">About</a></li>
+                            <li><a href="../index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Developer Resources</h5>
+                        <ul>
+
+
+                            <li><a href="resouces/designfreebies.html">
+                                    <i class="fas fa-palette me-2"></i> Design Freebies
+                                </a></li>
+
+                            <li>
+                                <a href="resouces/downloads.html">
+                                    <i class="fas fa-download me-2"></i> Free Resources
+                                    <span class="badge bg-primary ms-2">New</span>
+                                </a>
+                            </li>
+
+                            <li><a href="resouces/tutorials.html">
+                                    <i class="fas fa-book-open me-2"></i> Tutorial Vault
+                                </a></li>
+
+                            <li><a href="resouces/cheatsheet.html">
+                                    <i class="fas fa-file-alt me-2"></i> Dev Cheat Sheets
+                                </a></li>
+                        </ul>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-4">
+                    <div class="">
+
+                        <!-- Newsletter Form -->
+                        <div>
+                            <h5>Newsletter</h5>
+                            <p>Subscribe to get updates and design tips.</p>
+
+                            <form class=" newsletter-form" id="newsletterForm">
+                                <input type="email" id="emailInput" placeholder="Your Email" required>
+                                <button type="submit"><i class="bi bi-send"></i></button>
+                            </form>
+
+                            <!-- Success Message -->
+                            <div id="successMsg" style="display:none; margin-top:10px; color:green; font-weight:bold;">
+                                You’ve successfully joined the Promise Creative newsletter!
+                            </div>
+
+
+                        </div>
+
+                        <script>
+                            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                const email = document.getElementById('emailInput').value.trim();
+                                const timestamp = new Date().toLocaleString();
+                                const successMsg = document.getElementById('successMsg');
+
+                                if (!email || !email.includes('@')) {
+                                    alert("Please enter a valid email.");
+                                    return;
+                                }
+
+                                let saved = JSON.parse(localStorage.getItem('subscribers')) || [];
+                                saved.push({
+                                    email: email,
+                                    time: timestamp
+                                });
+                                localStorage.setItem('subscribers', JSON.stringify(saved));
+
+                                document.getElementById('newsletterForm').reset();
+                                successMsg.style.display = 'block';
+
+                                successMsg.style.display = 'block';
+                                setTimeout(() => {
+                                    successMsg.style.display = 'none';
+                                }, 6000); // hides after 4 seconds
+
+
+                            });
+                        </script>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <span id="current-year"></span> PromiseCreative. All Rights Reserved.</p>
+
+                        <script>
+                            // Get the current year and update the element
+                            document.getElementById('current-year').textContent = new Date().getFullYear();
+                        </script>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <a href="../privacy.html">Privacy Policy</a>
+                            <a href="../terms.html">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Set initial theme
+        let currentTheme = localStorage.getItem('theme') ||
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        setTheme(currentTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+            themeIcon.style.color = theme === 'dark' ? '#ffd700' : '#6e48aa';
+        }
+
+        // Skills Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Filter items
+                const filter = btn.dataset.filter;
+                skillCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Auto-close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Add this JavaScript for the explicit close button
+        document.querySelector('.navbar-close-btn').addEventListener('click', function() {
+            const navbar = document.querySelector('.navbar-collapse');
+            const bsCollapse = bootstrap.Collapse.getInstance(navbar) || new bootstrap.Collapse(navbar);
+            bsCollapse.hide();
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+
+            if (navbarCollapse.classList.contains('show')) {
+                if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            }
+        });
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Initialize animation states
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Run once on load
+        animateOnScroll();
+
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+
+</html>

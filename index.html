@@ -8,13 +8,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+   
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="assets/images/icon/promisecreativeicon.png">
-
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
@@ -32,12 +32,7 @@
         </div>
     </div>
 
-    <!-- Theme Toggle -->
-    <div class="theme-toggle">
-        <button id="themeToggle" class="btn btn-sm">
-            <i class="bi bi-moon-fill"></i>
-        </button>
-    </div>
+   
 
     <!-- Sticky Navbar -->
     <nav class="navbar navbar-expand-lg sticky-top">
@@ -52,16 +47,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <button class="navbar-close-btn">×</button>
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#process">Process</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/skills.html">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
+                  <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-toggle-btn">
+            <i class="bi" id="themeIcon"></i>
+        </button>
+    </div>
         </div>
+    
     </nav>
+   
 
     <!-- Hero Section with Particle Background -->
     <section id="home" class="hero">
@@ -72,15 +75,16 @@
                     <!-- Left Column (Text Content) -->
                     <div class="col-lg-6">
                         <h1 class="hero-title animate__animated animate__fadeInDown">
-                            Transforming <span class="highlight">Ideas</span> Into<br>
+                            Transforming <span class="highlight">Ideas</span> Into;<br>
                             <span class="typewrite" data-period="2000" data-type='["Digital Experiences", "Beautiful Websites", "Stunning Brands"]'></span>
                         </h1>
                         <p class="hero-subtitle animate__animated animate__fadeIn animate__delay-1s">
                             I craft premium websites and visual identities that elevate your online presence and captivate your audience.
                         </p>
                         <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-1s">
-                            <a href="#contact" class="btn btn-primary btn-glow">Start Your Project</a>
-                            <a href="#portfolio" class="btn btn-outline-secondary">View My Work</a>
+                            <a href="#contact" class="btn btn-primary btn-glow">Get to Us</a>
+                            <a href="./pages/portfolio.html" class="btn btn-outline-secondary">View My Work</a>
+                            <a href="./pages/about.html" class="btn btn-secondary">About Us</a>
                         </div>
                     </div>
 
@@ -282,91 +286,11 @@
                     </div>
                 </div>
 
-                <!-- Responsive Development -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-phone"></i>
-                            <div class="icon-shine"></div>
-                        </div>
-                        <div class="service-content">
-                            <h3>Responsive Development</h3>
-                            <p>Websites that look and work perfectly on any device, from desktop to mobile with admin Dashboard!</p>
-                            <ul class="service-features">
-                                <li><i class="bi bi-check-circle-fill"></i> Mobile-First Approach</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Framework Integration</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Performance Optimized</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Cross-Browser Tested</li>
-                            </ul>
-                            <div class="cta-wrapper">
-                                <a href="#contact" class="btn btn-cta">
-                                    <span>Technical Consultation</span>
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <span class="hint">Project-based or retainer options</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Content Creation -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-lightning-charge-fill"></i>
-                            <div class="icon-shine"></div>
-                        </div>
-                        <div class="service-content">
-                            <h3>Fash Website Designs</h3>
-                            <p>Compelling fast, clean and flexible websites with morden technologies. One time FEE and own it for life.</p>
-                            <ul class="service-features">
-                                <li><i class="bi bi-check-circle-fill"></i> High Compatibility</li>
-                                <li><i class="bi bi-check-circle-fill"></i> HTML, JS, CSS/ No Backend</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Full functional contact Form</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Best UI & Supper fast</li>
-                            </ul>
-                            <div class="cta-wrapper">
-                                <a href="#contact" class="btn btn-cta">
-                                    <span>Get one running</span>
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <span class="hint">Pay once and own a website of your own</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Website Maintenance -->
-                <div class="col-lg-4 col-md-6">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="bi bi-tools"></i>
-                            <div class="icon-shine"></div>
-                        </div>
-                        <div class="service-content">
-                            <h3>Website Maintenance</h3>
-                            <p>Ongoing support to keep your website secure, updated, and running smoothly.</p>
-                            <ul class="service-features">
-                                <li><i class="bi bi-check-circle-fill"></i> Regular Updates</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Security Monitoring</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Backup Solutions</li>
-                                <li><i class="bi bi-check-circle-fill"></i> Performance Optimization</li>
-                            </ul>
-                            <div class="cta-wrapper">
-                                <a href="#contact" class="btn btn-cta">
-                                    <span>Let's talk...</span>
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
-                                <span class="hint">Flexible maintenance packages</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
 
             <div class="text-center mt-5">
-                <a href="#contact" class="btn btn-primary" style="border-radius: 30px;">
-                    <span>Get Custom Pricing for Your Project</span>
+                <a href="../pages/services.html" class="btn btn-primary" style="border-radius: 30px;">
+                    <span>All Services</span>
                     <i class="bi bi-arrow-right"></i>
                 </a>
             </div>
@@ -462,85 +386,16 @@
                     </div>
                 </div>
 
-                <!-- Additional projects (hidden by default) -->
-                <div class="col-lg-4 col-md-6 portfolio-item hidden" data-category="web">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <img src="assets/images/restaurantimages/cover.png" alt="Web Design Project">
-                        </div>
-                        <div class="portfolio-overlay">
-                            <h3>Restaurant Platform</h3>
-                            <p>A restaurant website for daily menus</p>
-                            <a href="projects/restaurant-project.html" class="portfolio-link">View Project</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+               
 
             <div class="text-center mt-5">
-                <a href="#" id="viewAllBtn" class="btn btn-primary btn-glow">View All Projects</a>
+                <a href="./pages/portfolio.html" id="viewAllBtn" class="btn btn-primary btn-glow">View All Projects</a>
             </div>
         </div>
     </section>
 
-    <style>
-        /* Add this CSS to handle the visibility of projects */
-        .portfolio-item.hidden {
-            display: none;
-        }
 
-        .portfolio-item.visible {
-            display: block;
-        }
-
-        /* This ensures the grid layout works properly when items are shown/hidden */
-        .portfolio-grid {
-            display: flex;
-            flex-wrap: wrap;
-        }
-    </style>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const viewAllBtn = document.getElementById('viewAllBtn');
-            const hiddenProjects = document.querySelectorAll('.portfolio-item.hidden');
-
-            viewAllBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-
-                // Toggle all hidden projects
-                hiddenProjects.forEach(project => {
-                    project.classList.remove('hidden');
-                    project.classList.add('visible');
-                });
-
-                // Hide the button after clicking
-                viewAllBtn.style.display = 'none';
-            });
-
-            // Filter functionality remains the same but needs to account for hidden/visible classes
-            const filterButtons = document.querySelectorAll('.filter-btn');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Update active state
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filterValue = this.getAttribute('data-filter');
-                    const allProjects = document.querySelectorAll('.portfolio-item');
-
-                    allProjects.forEach(project => {
-                        if (filterValue === 'all' || project.getAttribute('data-category') === filterValue) {
-                            project.style.display = 'block';
-                        } else {
-                            project.style.display = 'none';
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+    
 
     <!-- Process Section -->
     <section id="process" class="process-section" style="margin-top: 100px; margin-bottom: 100px;">
@@ -1081,7 +936,7 @@
 
                             <!-- Success Message -->
                             <div id="successMsg" style="display:none; margin-top:10px; color:green; font-weight:bold;">
-                                🎉 You’ve successfully joined the Promise Creative newsletter!
+                                You’ve successfully joined the Promise Creative newsletter!
                             </div>
 
 
@@ -1154,6 +1009,47 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="assets/js/script.js"></script>
+
+<!-- <script async src="https://cse.google.com/cse.js?cx=068aadb67dca04714">
+</script>
+<div class="gcse-search"></div> -->
+
+
+
+
+
+<script
+  data-embed-id="dc6fedb6-6bdd-4f3b-b804-49374315f245"
+  data-base-api-url="http://localhost:3001/api/embed"
+  src="http://localhost:3000/embed/anythingllm-chat-widget.min.js"
+
+  data-language="en"
+  data-open-on-load="off"
+  data-chat-icon="chatBubble"
+  data-button-color="#3B86E5"
+  data-user-bg-color="#00E0FF"
+  data-assistant-bg-color="#E6F2FF"
+  data-brand-image-url="assets/images/chattura-infinity.png"
+  data-greeting="Hello there! 👋 I'm Promise, you are here just to test Chattura Agency. Please don't over load the bot. We look forward for your reports, thanks"
+  data-no-sponsor=""
+  data-sponsor-link="https://promisecreative.netlify.app"
+  data-sponsor-text="Powered by Chattura Agency"
+  data-position="bottom-right"
+  data-assistant-name="Chattura Agency"
+  data-assistant-icon="assets/images/icon/promisecreativeicon.png"
+  data-default-messages="Hello! can you help me?, Tell me about Promise Creative's services!, How can I contact you?"
+  data-send-message-text="Type in your message..."
+  data-reset-chat-text="Start a fresh chat"
+  data-show-thoughts="true"
+  data-support-email="promisecreative@yahoo.com"
+>
+</script>
+
+
+
+
+</script>
+
 </body>
 
 </html>

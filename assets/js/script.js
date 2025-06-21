@@ -1,26 +1,117 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Advanced Preloader
+    // --- Preloader Elements & Initial Setup ---
     const preloader = document.querySelector('.preloader');
     const progressBar = document.querySelector('.progress-bar');
+    const SESSION_VISITED_KEY = 'site_visited_this_session'; // Flag to mark if any page has been visited in this session
 
-    // Simulate loading progress
-    let progress = 0;
-    const progressInterval = setInterval(() => {
-        progress += Math.random() * 10;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(progressInterval);
-
-            // Hide preloader when loading is complete
-            setTimeout(() => {
-                preloader.style.opacity = '0';
-                setTimeout(() => {
+    // Function to hide the preloader (defined once)
+    function hidePreloader() {
+        if (preloader) {
+            // Check if preloader is currently visible or animating
+            if (preloader.style.opacity === '1' || preloader.style.display === 'flex') {
+                preloader.style.opacity = '0'; // Start fade out
+                preloader.addEventListener('transitionend', () => {
                     preloader.style.display = 'none';
-                }, 500);
-            }, 300);
+                    document.body.style.overflow = ''; // Restore scrolling
+                }, { once: true });
+
+                // Fallback: Ensure it's hidden even if transitionend doesn't fire or there's no CSS transition
+                setTimeout(() => {
+                    if (preloader.style.display !== 'none') {
+                        preloader.style.display = 'none';
+                        document.body.style.overflow = '';
+                    }
+                }, 600); // Should be slightly longer than your fade-out transition duration
+            } else {
+                // If preloader is already hidden or not visible, just ensure styles are correct
+                preloader.style.display = 'none';
+                document.body.style.overflow = '';
+            }
         }
-        progressBar.style.width = `${progress}%`;
-    }, 100);
+    }
+
+    // --- Main Preloader Control Logic ---
+
+    // 1. Check if the user has visited any page in this session.
+    // This flag is set true as soon as ANY page loads with the preloader logic.
+    const hasVisitedInSession = sessionStorage.getItem(SESSION_VISITED_KEY);
+
+    // 2. Determine the type of navigation (fresh load vs. reload/back_forward)
+    let isFreshNavigation = true; // Assume fresh unless proven otherwise
+    if (window.performance && window.performance.getEntriesByType) {
+        const navigationEntries = performance.getEntriesByType("navigation");
+        if (navigationEntries.length > 0) {
+            const navigationType = navigationEntries[0].type;
+            if (navigationType === 'back_forward' || navigationType === 'reload') {
+                isFreshNavigation = false;
+            }
+        }
+    } else if (window.performance && window.performance.navigation) { // Deprecated fallback
+        const navigationType = performance.navigation.type;
+        if (navigationType === performance.navigation.TYPE_BACK_FORWARD || navigationType === performance.navigation.TYPE_RELOAD) {
+            isFreshNavigation = false;
+        }
+    }
+
+    // 3. Check if the current page is the "main" page (index.html or root URL)
+    // Adjust this regex if your main page URL is more complex than just '/' or '/index.html'
+    const isMainPage = window.location.pathname === '/' ||
+                       window.location.pathname === '/index.html' ||
+                       window.location.pathname === '/index.htm'; // Common variations
+
+    // --- DECISION POINT FOR PRELOADER ---
+    // The main, custom preloader animation will ONLY run if:
+    // A) It's the very first time the user has ever landed on this site *in this session*.
+    // B) AND that first landing is directly on the *main* page (index.html).
+    // C) AND it's a fresh navigation (not a reload or back/forward).
+    if (!hasVisitedInSession && isMainPage && isFreshNavigation) {
+        // This is a true first visit to the main page.
+        sessionStorage.setItem(SESSION_VISITED_KEY, 'true'); // Mark as visited for this session
+
+        // Ensure preloader is visible initially with full opacity
+        if (preloader) {
+            preloader.style.display = 'flex'; // Or 'block', depending on your CSS
+            preloader.style.opacity = '1'; // Ensure it's opaque at the start
+            document.body.style.overflow = 'hidden'; // Prevent scrolling during preloader animation
+        }
+
+        // --- Your EXISTING Preloader Animation Logic (now conditional) ---
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+            progress += Math.random() * 10;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(progressInterval);
+
+                // Hide preloader when your simulated loading is complete
+                setTimeout(() => {
+                    hidePreloader(); // Call the unified hidePreloader function
+                }, 300); // Original delay after progress complete
+            }
+            if (progressBar) {
+                progressBar.style.width = `${progress}%`;
+            }
+        }, 100);
+
+    } else {
+        // --- NO CUSTOM PRELOADER FOR THESE CASES ---
+        // If it's not the very first visit to the main page, or it's a reload/back/forward,
+        // then we immediately hide the custom preloader.
+        hidePreloader();
+    }
+
+    // Optional: Smooth scroll to section if URL has a hash (e.g., #services)
+    if (window.location.hash) {
+        // Delay ensures the page content is fully rendered before scrolling
+        // This is important for "Back to Services" links that use hashes.
+        setTimeout(() => {
+            const targetSection = document.querySelector(window.location.hash);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 0); // Small delay to allow layout to settle
+    }
+
 
     // Initialize Particles.js
     if (document.getElementById('particles-js')) {
@@ -131,31 +222,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    const html = document.documentElement;
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const html = document.documentElement;
 
-    // Check for saved theme preference or use preferred color scheme
-    const savedTheme = localStorage.getItem('theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+// Check for saved theme preference or use preferred color scheme
+const savedTheme = localStorage.getItem('theme') ||
+(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
-    // Apply the saved theme
-    if (savedTheme === 'dark') {
-        html.setAttribute('data-theme', 'dark');
-        themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
-    }
+// Apply the saved theme
+if (savedTheme === 'dark') {
+html.setAttribute('data-theme', 'dark');
+themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+}
 
-    themeToggle.addEventListener('click', function() {
-        if (html.getAttribute('data-theme') === 'dark') {
-            html.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-            themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
-        } else {
-            html.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
-        }
-    });
+themeToggle.addEventListener('click', function() {
+if (html.getAttribute('data-theme') === 'dark') {
+html.removeAttribute('data-theme');
+localStorage.setItem('theme', 'light');
+themeToggle.innerHTML = '<i class="bi bi-moon-fill"></i>';
+} else {
+html.setAttribute('data-theme', 'dark');
+localStorage.setItem('theme', 'dark');
+themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+}
+});
 
     // Typewriter Effect
     class TypeWriter {
@@ -200,25 +291,40 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-
-    // Auto-close mobile menu when clicking a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            const navbarCollapse = document.querySelector('.navbar-collapse');
-            if (navbarCollapse.classList.contains('show')) {
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-                bsCollapse.hide();
-            }
-        });
+// Auto-close mobile menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
     });
+});
 
+// Add this JavaScript for the explicit close button
+document.querySelector('.navbar-close-btn').addEventListener('click', function() {
+    const navbar = document.querySelector('.navbar-collapse');
+    const bsCollapse = bootstrap.Collapse.getInstance(navbar) || new bootstrap.Collapse(navbar);
+    bsCollapse.hide();
+});
 
-    // Add this JavaScript
-    document.querySelector('.navbar-close-btn').addEventListener('click', function() {
-        const navbar = document.querySelector('.navbar-collapse');
-        const bsCollapse = bootstrap.Collapse.getInstance(navbar) || new bootstrap.Collapse(navbar);
-        bsCollapse.hide();
-    });
+// --- NEW: Close mobile menu when clicking outside ---
+document.addEventListener('click', function(event) {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.querySelector('.navbar-toggler'); // Get the hamburger icon button
+
+    // Check if the navbar is currently open
+    if (navbarCollapse.classList.contains('show')) {
+        // Check if the click was outside the navbar itself AND not on the toggler button
+        // .contains(event.target) checks if the clicked element is within the navbarCollapse
+        // or if the clicked element IS the navbarToggler
+        if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
+    }
+});
 
 
     // Init TypeWriter

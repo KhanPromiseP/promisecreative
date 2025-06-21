@@ -1,11 +1,11 @@
 /* Base Styles */
 :root {
-    --primary-color: #6c63ff;
-    --secondary-color: #4d44db;
+    --primary-color: #6e48aa;
+    --secondary-color: #9d50bb;
     --accent-color: #ff6584;
     --dark-color: #2d2d39;
     --light-color: #f8f9fa;
-    --text-color: #4a4a4a;
+    --text-color: #333333;
     --text-light: #6c757d;
     --white: #ffffff;
     --black: #000000;
@@ -19,8 +19,10 @@
 }
 
 [data-theme="dark"] {
+    --primary-color: #9d50bb;
+    --secondary-color: #6e48aa;
     --dark-color: #f8f9fa;
-    --light-color: #2d2d39;
+    --light-color: #16213e;
     --text-color: #e9ecef;
     --text-light: #adb5bd;
     --gray: #343a40;
@@ -80,9 +82,9 @@ img {
     height: auto;
 }
 
-ul {
+/* ul {
     list-style: none;
-}
+} */
 
 .btn {
     display: inline-block;
@@ -187,6 +189,10 @@ ul {
 
 
 
+
+
+
+
 /* Profile Container */
 .profile-container {
     position: absolute;
@@ -242,7 +248,7 @@ ul {
 
 /* services  */
 
-.services-section {
+/* .services-section {
     padding: 100px 0;
     background: var(--light-color);
 }
@@ -274,7 +280,7 @@ ul {
     justify-content: center;
     font-size: 2.2rem;
     color: #6e48aa;
-}
+} */
 
 .icon-shine {
     position: absolute;
@@ -286,7 +292,7 @@ ul {
     transition: opacity 0.3s;
 }
 
-.service-card:hover .icon-shine {
+/* .service-card:hover .icon-shine {
     opacity: 1;
 }
 
@@ -311,7 +317,7 @@ ul {
     top: 3px;
     color: #6e48aa;
     font-size: 1.1rem;
-}
+} */
 
 .btn-cta {
     display: inline-flex;
@@ -573,30 +579,30 @@ ul {
 
 
 /* Theme Toggle - Always Visible */
-.theme-toggle {
+/* .theme-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 9999;
-    opacity: 1 !important;
+    opacity: 1 !important; */
     /* Force visibility */
-    visibility: visible !important;
+    /* visibility: visible !important; */
     /* Ensure it's always shown */
-}
+/* } */
 
-.theme-toggle button {
+/* .theme-toggle button {
 
     color: var(--text-light);
 
     opacity: 1 !important;
-}
+} */
 
 /* Ensure icon visibility */
-.theme-toggle button i {
+/* .theme-toggle button i {
     display: inline-block !important;
     opacity: 1 !important;
     visibility: visible !important;
-}
+} */
 
 
 
@@ -1651,8 +1657,8 @@ textarea.form-control {
 /* Back to Top */
 .back-to-top {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 20px;
+    right: 80px;
     width: 50px;
     height: 50px;
     background-color: var(--primary-color);
@@ -2168,7 +2174,7 @@ textarea.form-control {
     padding: 0.5rem;
     transition: all 0.3s ease;
     /* Theme-aware colors */
-    background-color: var(--light-color);
+    background-color: rgb(44, 35, 35);
 }
 
 
@@ -2197,8 +2203,36 @@ textarea.form-control {
 }
 
 
+ /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray);
+            border: 1px solid var(--border-color);
+            color: var(  --text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
 
 
+        
 
 
 
@@ -2206,13 +2240,12 @@ textarea.form-control {
     box-shadow: none;
 }
 
-/* Light/Dark Theme Toggler Icon */
 [data-bs-theme="light"] .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
-
+/* Your custom CSS for Dark Mode */
 [data-bs-theme="dark"] .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 255, 0, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; /* Add !important for testing */
 }
 
 /* Nav Links Styling */

@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | PromiseCreative</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #eaeaea;
+            --accent-color: #ff6584;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #9d50bb;
+            --secondary-color: #6e48aa;
+            --dark-color: #f8f9fa;
+            --light-color: #1a1a2e;
+            --bg-color: #16213e;
+            --text-color: #f8f9fa;
+            --card-bg: #0f3460;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .services-detail {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .services-header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .services-header .subtitle {
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .services-description {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .service-card {
+            height: 100%;
+            padding: 30px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: height 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            height: 8px;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: white;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .service-icon i {
+            position: relative;
+            z-index: 2;
+        }
+
+        .icon-shine {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 0.7;
+            }
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(110, 72, 170, 0.3);
+            color: white;
+        }
+
+        .btn-cta i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-cta:hover i {
+            transform: translateX(5px);
+        }
+
+        .hint {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        .cta-wrapper {
+            margin-top: auto;
+        }
+
+        .services-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(110, 72, 170, 0.4);
+        }
+
+        .btn-primary i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Back Button */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: var(--primary-color);
+            transform: translateX(-5px);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .back-button:hover i {
+            transform: translateX(-3px);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animation classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo-dot {
+            color: var(--accent-color);
+        }
+
+        .navbar-brand {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .services-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+     
+       <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <span class="logo-text">PromiseCreative</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="navbar-close-btn">×</button>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./skills.html">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+         <div class="theme-toggle">
+        <button id="themeToggle" class="theme-toggle-btn">
+            <i class="bi" id="themeIcon"></i>
+        </button>
+    </div>
+    </nav>
+
+   
+
+
+ 
+
+    <!-- Services Content -->
+    <div class="services-detail">
+        <div class="services-header animate-fade-in">
+            <h1>Our Premium Services</h1>
+            <p class="subtitle">Tailored solutions to elevate your digital presence</p>
+        </div>
+
+        <div class="services-description animate-fade-in" style="animation-delay: 0.2s">
+            <p>We deliver exceptional digital experiences through our comprehensive suite of services. Each solution is crafted with precision, combining cutting-edge technology with creative excellence to help your business stand out in the digital landscape.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- Custom Website Design -->
+            <div class="col-lg-4 col-md-6 animate-fade-in" style="animation-delay: 0.3s">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-code-slash"></i>
+                        <div class="icon-shine"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Custom Website Design</h3>
+                        <p>Bespoke digital experiences crafted to perfectly represent your brand and engage your audience.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> 100% Custom Design</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Mobile-Optimized</li>
+                            <li><i class="bi bi-check-circle-fill"></i> SEO-Ready Architecture</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Performance Optimized</li>
+                        </ul>
+                        <div class="cta-wrapper">
+                            <a href="#contact" class="btn btn-cta">
+                                <span>Request Proposal</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <span class="hint">Starting at industry-competitive rates</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Graphic Design -->
+            <div class="col-lg-4 col-md-6 animate-fade-in" style="animation-delay: 0.4s">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-palette"></i>
+                        <div class="icon-shine"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Graphic Design</h3>
+                        <p>Stunning visual assets that make your brand stand out and leave a lasting impression.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Logo & Brand Assets</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Marketing Materials</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Social Media Graphics</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Flyer Designs</li>
+                        </ul>
+                        <div class="cta-wrapper">
+                            <a href="#contact" class="btn btn-cta">
+                                <span>View Portfolio</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <span class="hint">Custom packages available</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website Optimization -->
+            <div class="col-lg-4 col-md-6 animate-fade-in" style="animation-delay: 0.5s">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-tools"></i>
+                        <div class="icon-shine"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Website Optimization</h3>
+                        <p>Transform your existing site into a high-performing, user-friendly digital asset that converts visitors.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Speed & Performance Boost</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Mobile Responsiveness Fixes</li>
+                            <li><i class="bi bi-check-circle-fill"></i> UI/UX Enhancements</li>
+                            <li><i class="bi bi-check-circle-fill"></i> SEO & Accessibility Improvements</li>
+                        </ul>
+                        <div class="cta-wrapper">
+                            <a href="#contact" class="btn btn-cta">
+                                <span>Audit My Website</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <span class="hint">Get measurable improvements</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsive Development -->
+            <div class="col-lg-4 col-md-6 animate-fade-in" style="animation-delay: 0.3s">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-phone"></i>
+                        <div class="icon-shine"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Responsive Development</h3>
+                        <p>Websites that look and work perfectly on any device, from desktop to mobile with admin Dashboard!</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Mobile-First Approach</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Framework Integration</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Performance Optimized</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Cross-Browser Tested</li>
+                        </ul>
+                        <div class="cta-wrapper">
+                            <a href="#contact" class="btn btn-cta">
+                                <span>Technical Consultation</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <span class="hint">Project-based or retainer options</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fast Website Designs -->
+            <div class="col-lg-4 col-md-6 animate-fade-in" style="animation-delay: 0.4s">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-lightning-charge-fill"></i>
+                        <div class="icon-shine"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Fast Website Designs</h3>
+                        <p>Compelling fast, clean and flexible websites with modern technologies. One time FEE and own it for life.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> High Compatibility</li>
+                            <li><i class="bi bi-check-circle-fill"></i> HTML, JS, CSS/ No Backend</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Full functional contact Form</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Best UI & Super fast</li>
+                        </ul>
+                        <div class="cta-wrapper">
+                            <a href="#contact" class="btn btn-cta">
+                                <span>Get one running</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <span class="hint">Pay once and own a website of your own</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Website Maintenance -->
+            <div class="col-lg-4 col-md-6 animate-fade-in" style="animation-delay: 0.5s">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-shield-check"></i>
+                        <div class="icon-shine"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3>Website Maintenance</h3>
+                        <p>Ongoing support to keep your website secure, updated, and running smoothly.</p>
+                        <ul class="service-features">
+                            <li><i class="bi bi-check-circle-fill"></i> Regular Updates</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Security Monitoring</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Backup Solutions</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Performance Optimization</li>
+                        </ul>
+                        <div class="cta-wrapper">
+                            <a href="#contact" class="btn btn-cta">
+                                <span>Let's talk...</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                            <span class="hint">Flexible maintenance packages</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-cta animate-fade-in" style="animation-delay: 0.6s">
+            <h3 class="mb-4">Ready to transform your digital presence?</h3>
+            <p class="mb-4">Let's discuss how we can help you achieve your goals with our premium services.</p>
+            <a href="../index.html#contact" class="btn btn-primary">
+                <span>Get Custom Pricing for Your Project</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-about">
+                        <a class="footer-logo" href="#">
+                            <span class="logo-text">Promise</span>
+                            <span class="logo-dot">.</span>
+                        </a>
+                        <p>At PromiseCreative, We craft digital experiences that help individuals and businesses stand out online with custom websites and branding.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="./index.html#home">Home</a></li>
+                            <li><a href="./services.html">Services</a></li>
+                            <li><a href="./portfolio.html">Portfolio</a></li>
+                            <li><a href="./about.html">About</a></li>
+                            <li><a href="../index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Developer Resources</h5>
+                        <ul>
+
+
+                            <li><a href="resouces/designfreebies.html">
+                                    <i class="fas fa-palette me-2"></i> Design Freebies
+                                </a></li>
+
+                            <li>
+                                <a href="resouces/downloads.html">
+                                    <i class="fas fa-download me-2"></i> Free Resources
+                                    <span class="badge bg-primary ms-2">New</span>
+                                </a>
+                            </li>
+
+                            <li><a href="resouces/tutorials.html">
+                                    <i class="fas fa-book-open me-2"></i> Tutorial Vault
+                                </a></li>
+
+                            <li><a href="resouces/cheatsheet.html">
+                                    <i class="fas fa-file-alt me-2"></i> Dev Cheat Sheets
+                                </a></li>
+                        </ul>
+                    </div>
+                </div> -->
+
+                <div class="col-lg-4">
+                    <div class="">
+
+                        <!-- Newsletter Form -->
+                        <div>
+                            <h5>Newsletter</h5>
+                            <p>Subscribe to get updates and design tips.</p>
+
+                            <form class=" newsletter-form" id="newsletterForm">
+                                <input type="email" id="emailInput" placeholder="Your Email" required>
+                                <button type="submit"><i class="bi bi-send"></i></button>
+                            </form>
+
+                            <!-- Success Message -->
+                            <div id="successMsg" style="display:none; margin-top:10px; color:green; font-weight:bold;">
+                                You’ve successfully joined the Promise Creative newsletter!
+                            </div>
+
+
+                        </div>
+
+                        <script>
+                            document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+                                e.preventDefault();
+                                const email = document.getElementById('emailInput').value.trim();
+                                const timestamp = new Date().toLocaleString();
+                                const successMsg = document.getElementById('successMsg');
+
+                                if (!email || !email.includes('@')) {
+                                    alert("Please enter a valid email.");
+                                    return;
+                                }
+
+                                let saved = JSON.parse(localStorage.getItem('subscribers')) || [];
+                                saved.push({
+                                    email: email,
+                                    time: timestamp
+                                });
+                                localStorage.setItem('subscribers', JSON.stringify(saved));
+
+                                document.getElementById('newsletterForm').reset();
+                                successMsg.style.display = 'block';
+
+                                successMsg.style.display = 'block';
+                                setTimeout(() => {
+                                    successMsg.style.display = 'none';
+                                }, 6000); // hides after 4 seconds
+
+
+                            });
+                        </script>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <span id="current-year"></span> PromiseCreative. All Rights Reserved.</p>
+
+                        <script>
+                            // Get the current year and update the element
+                            document.getElementById('current-year').textContent = new Date().getFullYear();
+                        </script>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <a href="../privacy.html">Privacy Policy</a>
+                            <a href="../terms.html">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Set initial theme
+        let currentTheme = localStorage.getItem('theme') ||
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        setTheme(currentTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+            themeIcon.style.color = theme === 'dark' ? '#ffd700' : '#6e48aa';
+        }
+
+        // Animate elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Auto-close mobile menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        if (navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
+    });
+});
+
+// Add this JavaScript for the explicit close button
+document.querySelector('.navbar-close-btn').addEventListener('click', function() {
+    const navbar = document.querySelector('.navbar-collapse');
+    const bsCollapse = bootstrap.Collapse.getInstance(navbar) || new bootstrap.Collapse(navbar);
+    bsCollapse.hide();
+});
+
+// --- NEW: Close mobile menu when clicking outside ---
+document.addEventListener('click', function(event) {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.querySelector('.navbar-toggler'); // Get the hamburger icon button
+
+    // Check if the navbar is currently open
+    if (navbarCollapse.classList.contains('show')) {
+        // Check if the click was outside the navbar itself AND not on the toggler button
+        // .contains(event.target) checks if the clicked element is within the navbarCollapse
+        // or if the clicked element IS the navbarToggler
+        if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+            bsCollapse.hide();
+        }
+    }
+});
+
+        // Initialize animation states
+        document.querySelectorAll('.animate-fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        // Run once on load
+        animateOnScroll();
+
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+
+        
+    </script>
+    <!-- <script src="../assets/js/script.js"></script> -->
+</body>
+
+</html>
