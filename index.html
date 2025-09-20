@@ -52,7 +52,7 @@
                     <li class="nav-item"><a class="nav-link" href="./pages/portfolio.html">Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="./pages/skills.html">Skills</a></li>
                     <li class="nav-item"><a class="nav-link" href="./pages/about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./pages/contact.html">Contact</a></li>
                 </ul>
             </div>
                   <!-- Theme Toggle -->
@@ -695,173 +695,46 @@
                     </div>
                 </div>
 
-                <div class="col-lg-7">
-                    <!-- Form with added ID for backup functionality -->
-                    <form id="contactForm" class="contact-form" action="https://formsubmit.co/khanpennpromise@gmail.com" method="POST" style="opacity: 1 !important; display: block !important;">
-                        <!-- Anti-spam fields -->
-                        <input type="text" name="_honey" style="display:none" aria-hidden="true">
-                        <input type="hidden" name="_captcha" value="false">
-
-                        <!-- FormSubmit configuration -->
-                        <input type="hidden" name="_template" value="box">
-                        <input type="hidden" name="_subject" value="New Contact Form Submission">
-                        <input type="hidden" name="_next" id="successRedirect" value="http://127.0.0.1:5500/thank-you.html">
-                        <input type="hidden" name="_autoresponse" value="Thank you for contacting us! We'll get back to you soon.">
-
-                        <!-- Form Fields -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="name" placeholder="Your Name" required id="clientName" minlength="2" maxlength="100">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" name="email" placeholder="Your Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                                </div>
-                            </div>
-                        </div>
-
+                <div class="col-lg-7" data-aos="fade-left">
+    <!-- <div class="card border-0 shadow-sm"> -->
+        <div class="card-body p-4">
+            <h3 class="mb-4 text-center">Send Me a Message</h3>
+            
+            <form class="contact-form" id="contactForm">
+                <!-- Anti-spam field (hidden) -->
+                <input type="text" name="_honey" style="display:none">
+                
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" name="subject" placeholder="Subject" maxlength="150">
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" required id="clientName">
                         </div>
-
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <textarea class="form-control" name="message" rows="5" placeholder="Your Message" required minlength="10" maxlength="2000"></textarea>
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                         </div>
-
-                        <!-- Messages Container with minimum height to prevent layout shift -->
-                        <div id="messageContainer" style="margin: 20px 0; min-height: 60px;"></div>
-
-                        <button type="submit" class="btn btn-primary btn-glow" id="submitBtn">
-                            <span id="submitText">Send Message</span>
-                            <span id="loadingSpinner" style="display:none;">
-                                <i class="bi bi-arrow-repeat spin"></i> Sending...
-                            </span>
-                        </button>
-                    </form>
+                    </div>
                 </div>
+                
+                <div class="form-group">
+                    <textarea class="form-control" name="message" rows="6" placeholder="Type your message here..." required></textarea>
+                </div>
+                
+                <div id="messageContainer" style="min-height: 60px; margin: 20px 0;"></div>
+                
+                <button type="submit" class="btn btn-primary w-100" id="submitBtn">
+                    <span id="submitText">Send Message</span>
+                    <span id="loadingSpinner" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i> Sending...
+                    </span>
+                </button>
+            </form>
+        </div>
+    <!-- </div> -->
+</div>
 
-                <script>
-                    // Backup all form data before submission
-                    function backupFormData(form) {
-                        const formData = {};
-                        Array.from(form.elements).forEach(element => {
-                            if (element.name) {
-                                formData[element.name] = element.value;
-                            }
-                        });
-                        return formData;
-                    }
-
-                    // Restore form data if submission fails
-                    function restoreFormData(form, backup) {
-                        Array.from(form.elements).forEach(element => {
-                            if (element.name && backup[element.name] !== undefined) {
-                                element.value = backup[element.name];
-                            }
-                        });
-                    }
-
-                    document.getElementById('contactForm').addEventListener('submit', async (e) => {
-                        e.preventDefault();
-                        const form = e.target;
-
-                        // Create backup of current form data
-                        const formBackup = backupFormData(form);
-
-                        const submitBtn = document.getElementById('submitBtn');
-                        const submitText = document.getElementById('submitText');
-                        const spinner = document.getElementById('loadingSpinner');
-                        const messageContainer = document.getElementById('messageContainer');
-                        const clientName = document.getElementById('clientName').value.trim();
-
-                        // Validate form before submission
-                        if (!form.checkValidity()) {
-                            messageContainer.innerHTML = `
-                            <div class="alert alert-warning">
-                                <i class="bi bi-exclamation-triangle"></i>
-                                Please fill out all required fields correctly.
-                            </div>`;
-                            return;
-                        }
-
-                        // Store name in sessionStorage for thank-you page
-                        sessionStorage.setItem('thankYouName', clientName);
-
-                        // Show loading state
-                        submitText.style.display = 'none';
-                        spinner.style.display = 'inline-block';
-                        submitBtn.disabled = true;
-                        messageContainer.innerHTML = '';
-
-                        try {
-                            console.log('Attempting form submission...');
-
-                            // Force form to remain visible (double protection)
-                            form.style.opacity = '1';
-                            form.style.display = 'block';
-
-                            // Submit via FormSubmit
-                            const response = await fetch(form.action, {
-                                method: 'POST',
-                                body: new FormData(form),
-                                headers: {
-                                    'Accept': 'application/json'
-                                }
-                            });
-
-                            console.log('Response received:', response);
-
-                            if (!response.ok) {
-                                const errorData = await response.json();
-                                console.error('Submission error:', errorData);
-                                throw new Error(errorData.message || 'Submission failed. Please try again later.');
-                            }
-
-                            console.log('Form submitted successfully, redirecting...');
-                            // Only redirect on success
-                            window.location.href = document.getElementById('successRedirect').value;
-
-                        } catch (error) {
-                            console.error('Form submission error:', error);
-
-                            // Restore form data from backup
-                            restoreFormData(form, formBackup);
-
-                            let errorMessage = 'Message failed to send. Please try again.';
-                            if (error.message.includes('captcha')) {
-                                errorMessage = 'Please complete the CAPTCHA verification.';
-                            } else if (error.message) {
-                                errorMessage = error.message;
-                            }
-
-                            messageContainer.innerHTML = `
-                            <div class="alert alert-danger">
-                                <i class="bi bi-exclamation-circle"></i>
-                                ${errorMessage}
-                            </div>`;
-
-                            // Triple protection to keep form visible
-                            form.style.opacity = '1';
-                            form.style.display = 'block';
-                            form.removeAttribute('hidden');
-
-                        } finally {
-                            submitText.style.display = 'inline-block';
-                            spinner.style.display = 'none';
-                            submitBtn.disabled = false;
-
-                            // Scroll to message container if there's an error
-                            if (messageContainer.innerHTML) {
-                                messageContainer.scrollIntoView({
-                                    behavior: 'smooth',
-                                    block: 'nearest'
-                                });
-                            }
-                        }
-                    });
-                </script>
+                
             </div>
         </div>
     </section>

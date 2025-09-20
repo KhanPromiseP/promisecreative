@@ -26,6 +26,7 @@
     --text-color: #e9ecef;
     --text-light: #adb5bd;
     --gray: #343a40;
+    --card-bg: #0f3460;
     --dark-gray: #e9ecef;
     --white: #212529;
     --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -1479,13 +1480,18 @@ img {
     margin-bottom: 1.5rem;
 }
 
+     .form-control::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+
 .form-control {
     width: 100%;
     padding: 0.75rem 1rem;
     border: 1px solid var(--gray);
     border-radius: var(--border-radius);
     font-size: 1rem;
-    transition: var(--transition);
     background-color: var(--light-color);
     color: var(--text-color);
 }
@@ -2203,7 +2209,7 @@ textarea.form-control {
 }
 
 
- /* Theme Toggle */
+  /* Theme Toggle */
         .theme-toggle {
             position: fixed;
             top: 20px;
@@ -2218,9 +2224,9 @@ textarea.form-control {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--gray);
+            background: var(--card-bg);
             border: 1px solid var(--border-color);
-            color: var(  --text-light);
+            color: var(--primary-color);
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -2230,6 +2236,7 @@ textarea.form-control {
             transform: scale(1.1);
             box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
         }
+        
 
 
         
@@ -2741,4 +2748,93 @@ textarea.form-control {
     .resource-card {
         margin-bottom: 30px;
     }
+}
+
+
+/* Fix for contact form stability */
+#contactForm {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    transform: none !important;
+}
+
+/* Remove transitions from form elements during submission */
+#contactForm .form-control,
+#contactForm .form-group,
+#contactForm button {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* Ensure form elements stay visible */
+#contactForm input,
+#contactForm textarea,
+#contactForm button {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Message container stability */
+#messageContainer {
+    min-height: 60px;
+    transition: none !important;
+}
+
+/* Loading spinner styles */
+#loadingSpinner {
+    display: none;
+}
+
+#loadingSpinner .spin {
+    animation: spin 1s linear infinite;
+    display: inline-block !important;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Prevent any accidental hiding */
+#contactForm[style*="display: none"],
+#contactForm[style*="opacity: 0"],
+#contactForm[style*="visibility: hidden"] {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/* Add to your CSS file */
+#messageContainer {
+    min-height: 60px;
+    margin: 20px 0;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.fa-spin {
+    animation: fa-spin 2s infinite linear;
+}
+
+@keyframes fa-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

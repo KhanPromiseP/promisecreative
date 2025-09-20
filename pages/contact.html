@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise Creative | Web & Graphic Design</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="../assets/images/icon/promisecreativeicon.png">
+     <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        :root {
+            --primary-color: #6e48aa;
+            --secondary-color: #9d50bb;
+            --dark-color: #1a1a2e;
+            --light-color: #f8f9fa;
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #ffffff;
+            --border-color: #eaeaea;
+            --accent-color: #ff6584;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #9d50bb;
+            --secondary-color: #6e48aa;
+            --dark-color: #f8f9fa;
+            --light-color: #1a1a2e;
+            --bg-color: #16213e;
+            --text-color: #f8f9fa;
+            --card-bg: #0f3460;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+       
+
+
+       
+       
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+          .form-control::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(110, 72, 170, 0.4);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-close-btn {
+                display: block;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-legal a {
+                margin-left: 0;
+                margin-right: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html#home">
+                <span class="logo-text">PromiseCreative</span>
+                <span class="logo-dot">.</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <button class="navbar-close-btn">×</button>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./skills.html">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <button id="themeToggle" class="theme-toggle-btn">
+                    <i class="bi" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="contact" class="contact-section" style="margin-top: 90px; margin-bottom: 90px;">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-subtitle">Get In Touch</span>
+                <h2 class="section-title">Contact <span class="highlight">Me</span></h2>
+                <p class="section-description">Have a project in mind? Let's discuss how I can help bring it to life.</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Email Me</h5>
+                                <a href="mailto:promisecreative@yahoo.com">promisecreative@yahoo.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Call Me</h5>
+                                <a href="tel:+237680834767">+ (237) 680-834-767</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="contact-icon">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h5>Location</h5>
+                                <address>Bambili, Bamenda-Cameroon</address>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/pennpromise123/"><i class="bi bi-instagram"></i></a>
+                            <a href="https://github.com/KhanPromiseP/"><i class="bi bi-github"></i></a>
+                            <a href="https://web.facebook.com/profile.php?id=61574957841948"><i class="bi bi-facebook"></i></a>
+                            <a href="https://x.com/promise_penn"><i class="bi bi-twitter"></i></a>
+                            <a href="https://wa.me/680834767" target="_blank"><i class="bi bi-whatsapp"></i></a>
+                            <a href="https://www.linkedin.com/in/khan-promise-b1064a298/"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="col-lg-7" data-aos="fade-left">
+    <!-- <div class="card border-0 shadow-sm"> -->
+        <div class="card-body p-4">
+            <h3 class="mb-4 text-center">Send Me a Message</h3>
+            
+            <form class="contact-form" id="contactForm">
+                <!-- Anti-spam field (hidden) -->
+                <input type="text" name="_honey" style="display:none">
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="name" placeholder="Your Name" required id="clientName">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <textarea class="form-control" name="message" rows="6" placeholder="Type your message here..." required></textarea>
+                </div>
+                
+                <div id="messageContainer" style="min-height: 60px; margin: 20px 0;"></div>
+                
+                <button type="submit" class="btn btn-primary w-100" id="submitBtn">
+                    <span id="submitText">Send Message</span>
+                    <span id="loadingSpinner" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i> Sending...
+                    </span>
+                </button>
+            </form>
+        </div>
+    <!-- </div> -->
+</div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-about">
+                        <a class="footer-logo" href="#">
+                            <span class="logo-text">Promise</span>
+                            <span class="logo-dot">.</span>
+                        </a>
+                        <p>At PromiseCreative, We craft digital experiences that help individuals and businesses stand out online with custom websites and branding.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#process">Process</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="">
+                        <!-- Newsletter Form -->
+                        <div>
+                            <h5>Newsletter</h5>
+                            <p>Subscribe to get updates and design tips.</p>
+
+                            <form class="newsletter-form" id="newsletterForm">
+                                <input type="email" id="emailInput" placeholder="Your Email" required>
+                                <button type="submit"><i class="bi bi-send"></i></button>
+                            </form>
+
+                            <!-- Success Message -->
+                            <div id="successMsg" style="display:none; margin-top:10px; color:green; font-weight:bold;">
+                                You've successfully joined the Promise Creative newsletter!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>&copy; <span id="current-year"></span> PromiseCreative. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <a href="privacy.html">Privacy Policy</a>
+                            <a href="terms.html">Terms of Service</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        // Set initial theme
+        let currentTheme = localStorage.getItem('theme') ||
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        setTheme(currentTheme);
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            setTheme(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+        });
+
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+            themeIcon.style.color = theme === 'dark' ? '#ffd700' : '#6e48aa';
+        }
+
+        // Auto-close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            });
+        });
+
+        // Add this JavaScript for the explicit close button
+        document.querySelector('.navbar-close-btn').addEventListener('click', function() {
+            const navbar = document.querySelector('.navbar-collapse');
+            const bsCollapse = bootstrap.Collapse.getInstance(navbar) || new bootstrap.Collapse(navbar);
+            bsCollapse.hide();
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+
+            // Check if the navbar is currently open
+            if (navbarCollapse.classList.contains('show')) {
+                // Check if the click was outside the navbar itself AND not on the toggler button
+                if (!navbarCollapse.contains(event.target) && !navbarToggler.contains(event.target)) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
+                }
+            }
+        });
+
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value.trim();
+            const timestamp = new Date().toLocaleString();
+            const successMsg = document.getElementById('successMsg');
+
+            if (!email || !email.includes('@')) {
+                alert("Please enter a valid email.");
+                return;
+            }
+
+            let saved = JSON.parse(localStorage.getItem('subscribers')) || [];
+            saved.push({
+                email: email,
+                time: timestamp
+            });
+            localStorage.setItem('subscribers', JSON.stringify(saved));
+
+            document.getElementById('newsletterForm').reset();
+            successMsg.style.display = 'block';
+
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 6000);
+        });
+
+        // Get the current year and update the element
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
