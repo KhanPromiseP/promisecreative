@@ -1,3 +1,4 @@
+// netlify/functions/send-email.js
 const nodemailer = require('nodemailer');
 
 exports.handler = async (event, context) => {
@@ -60,8 +61,8 @@ exports.handler = async (event, context) => {
       };
     }
 
-    // Create transporter with Yahoo SMTP settings
-    const transporter = nodemailer.createTransporter({
+    // Create transporter with Yahoo SMTP settings - FIXED THIS LINE
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: parseInt(process.env.SMTP_PORT),
       secure: true,
