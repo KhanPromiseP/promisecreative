@@ -1,7 +1,7 @@
 {
-  "name": "portfolio-pro",
+  "name": "promise-creative",
   "version": "1.0.0",
-  "description": "Professional portfolio website",
+  "description": "Promise Creative - Web & Graphic Design",
   "dependencies": {
     "nodemailer": "^6.9.7"
   }
