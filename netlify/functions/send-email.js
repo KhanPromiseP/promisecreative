@@ -1,30 +1,69 @@
-// netlify/functions/send-email.js
 const nodemailer = require('nodemailer');
 
 exports.handler = async (event, context) => {
+  // Set CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS'
+  };
+
+  // Handle preflight OPTIONS request
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ message: 'CORS preflight successful' })
+    };
+  }
+
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers,
       body: JSON.stringify({ error: 'Method not allowed' })
     };
   }
 
   try {
-    const { name, email, message } = JSON.parse(event.body);
+    // Parse the request body
+    let data;
+    try {
+      data = JSON.parse(event.body);
+    } catch (parseError) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Invalid JSON format' })
+      };
+    }
+
+    const { name, email, message } = data;
 
     // Validate input
     if (!name || !email || !message) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'All fields are required' })
+        headers,
+        body: JSON.stringify({ error: 'Name, email, and message are required' })
       };
     }
 
-    // Create transporter
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return {
+        statusCode: 400,
+        headers,
+        body: JSON.stringify({ error: 'Invalid email format' })
+      };
+    }
+
+    // Create transporter with Yahoo SMTP settings
     const transporter = nodemailer.createTransporter({
       host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
+      port: parseInt(process.env.SMTP_PORT),
       secure: true,
       auth: {
         user: process.env.SMTP_USER,
@@ -57,18 +96,18 @@ exports.handler = async (event, context) => {
     const userMail = {
       from: process.env.SMTP_USER,
       to: email,
-      subject: 'Thank you for contacting PortfolioPro',
+      subject: 'Thank you for contacting Promise Creative',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #6e48aa; margin-bottom: 10px;">PortfolioPro</h1>
-            <p style="color: #6c757d;">Premium Web Development & Design</p>
+            <h1 style="color: #6e48aa; margin-bottom: 10px;">Promise Creative</h1>
+            <p style="color: #6c757d;">Web & Graphic Design</p>
           </div>
           
           <div style="background: #f8f9fa; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
             <h2 style="color: #6e48aa; margin-bottom: 20px;">Thank you for reaching out, ${name}!</h2>
             <p style="color: #333; line-height: 1.6;">
-              I've received your message and will get back to you within 24 hours. 
+              We've received your message and will get back to you within 24 hours. 
               Here's a copy of what you sent:
             </p>
             
@@ -77,13 +116,13 @@ exports.handler = async (event, context) => {
             </div>
             
             <p style="color: #333; line-height: 1.6;">
-              In the meantime, feel free to explore more of my work or connect with me on social media.
+              In the meantime, feel free to explore more of our work or connect with us on social media.
             </p>
           </div>
           
           <div style="text-align: center; color: #6c757d; font-size: 14px;">
             <p>This is an automated message. Please do not reply to this email.</p>
-            <p>© ${new Date().getFullYear()} PortfolioPro. All rights reserved.</p>
+            <p>© ${new Date().getFullYear()} Promise Creative. All rights reserved.</p>
           </div>
         </div>
       `,
@@ -95,6 +134,7 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify({ message: 'Emails sent successfully' })
     };
 
@@ -102,7 +142,8 @@ exports.handler = async (event, context) => {
     console.error('Error sending email:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to send message' })
+      headers,
+      body: JSON.stringify({ error: 'Failed to send message. Please try again later.' })
     };
   }
 };
